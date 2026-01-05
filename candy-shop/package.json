@@ -1,0 +1,19 @@
+{
+  "name": "candy-shop",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "check": "run-s lint tsc type-coverage",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.3",
+    "vite": "^7.2.4",
+     "server": "json-server --watch data/db.json --port 3000 --delay 1500",
+    "tsc": "tsc -b",
+    "type-coverage": "type-coverage -p ./tsconfig.app.json --detail --at-least 99"
+  }
+}
