@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <main>
+      <main className="bg-light">
         <Outlet />
       </main>
       <Footer />

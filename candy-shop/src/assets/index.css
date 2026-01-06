@@ -2,12 +2,16 @@
   box-sizing: border-box;
 }
 
-main {
-  margin: 0;
-  padding: 0;
-  background-color: #FFF7ED;
-  font-family: "Inter", sans-serif;
-  padding: 1em 2em;
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.activenav{
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  color: #161616 !important;
 }
 
 body::-webkit-scrollbar {
@@ -19,19 +23,6 @@ body {
   scrollbar-width: none;
   height: 100%;
   margin: 0;
-}
-
-#root{
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  background-color: #FFF7ED;
-}
-
-.activenav{
-  font-weight: bold !important;
-  text-decoration: underline !important;
-  color: #161616 !important;
 }
 
 .candies-container {
@@ -64,6 +55,18 @@ body {
   margin-top: 1em;
 }
 
+footer {
+  background-color: #161616;
+  color: #AAAAAA;
+  height: 74px;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  font-weight: 500;
+}
+
 header {
   height: 110px;
   display: flex;
@@ -75,6 +78,14 @@ header {
 
 h1, h2{
   text-align: center;
+}
+
+main {
+  margin: 0;
+  padding: 0;
+  background-color: #FFF7ED;
+  font-family: "Inter", sans-serif;
+  padding: 1em 2em;
 }
 
 .site-logo {
