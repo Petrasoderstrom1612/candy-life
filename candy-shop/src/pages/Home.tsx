@@ -12,9 +12,9 @@ const Home = () => {
 
   return (
     <div>
-      <h1>Candies</h1>
+      <h1>Our candies are the best!</h1>
       {candies.length > 0 && candies.map(c => 
-        <div key={c.id}>
+        <div className='candy-box' key={c.id}>
           <h2>{c.name}</h2>
           <p>{c.price} SEK</p>
           <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`}/>      

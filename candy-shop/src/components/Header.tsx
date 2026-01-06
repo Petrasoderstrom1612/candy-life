@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header>
       <NavLink to="/" className={({isActive}) => isActive ? "activenav site-logo" : "site-logo"}>#CandyLife</NavLink>
-      <nav>
+      <nav className="d-flex align-items-center gap-3">
         <NavLink to="/" className={({isActive}) => isActive ? "activenav" : undefined}>Home</NavLink>
         <Button variant="outline-dark"><TfiShoppingCart /></Button>
       </nav>

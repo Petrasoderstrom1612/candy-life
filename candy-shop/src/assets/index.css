@@ -34,6 +34,23 @@ body {
   color: #161616 !important;
 }
 
+.candy-box{
+  border: 1px solid black;
+  padding-top: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1.5em 0;
+  background-color: #FFF;
+}
+
+.candy-box img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 header {
   height: 110px;
   display: flex;
