@@ -1,3 +1,8 @@
+export interface CandyImage {
+  thumbnail: string;
+  large: string;
+}
+
 export interface Tag {
   id: number;
   name: string;
@@ -9,7 +14,7 @@ export interface Candy {
     name: string;
     price: number;
     on_sale: boolean;
-    images: string[];
+    images: CandyImage;
     stock_status: string;
     stock_quantity: number;
     tags: Tag[];

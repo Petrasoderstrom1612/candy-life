@@ -1,20 +1,8 @@
-import {useState, useEffect} from 'react'
-import './assets/App.css'
-import type {Candy} from './services/Types'
-import { getCandies } from './services/BortakvallApi'
+import Home from "./pages/Home"
 
 function App() {
-  const [candies, setCandies] = useState<Candy[]>([])
-
-  useEffect(() => {
-    getCandies().then(setCandies)
-  }, [])
-
   return (
-    <div>
-      <h1>Candies</h1>
-      {candies.map(c => <div key={c.id}>{c.name}</div>)}
-    </div>
+  <Home/>
   )
 }
 
