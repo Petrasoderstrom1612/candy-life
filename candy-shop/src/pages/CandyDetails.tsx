@@ -1,7 +1,8 @@
-import {useLocation, Link} from "react-router-dom"
+import type { CandyLocationState } from "../services/Types";
+import { Link, useLocation} from "react-router-dom"
 
 const CandyDetails = () => {
-  const location = useLocation() 
+  const location = useLocation() as { state: CandyLocationState | null }; 
   console.log(location?.state?.id)
 
   return (

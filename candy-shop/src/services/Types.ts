@@ -1,3 +1,7 @@
+export type CandyLocationState = {
+  id: number;
+}
+
 export interface CandyImage {
   thumbnail: string;
   large: string;
