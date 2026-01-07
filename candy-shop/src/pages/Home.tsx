@@ -1,8 +1,9 @@
 import '../assets/app.scss'
-import { BounceLoader } from 'react-spinners';
 import Button from 'react-bootstrap/Button'
 import type {Candy} from '../services/Types'
 import { getCandies } from '../services/BortakvallApi'
+import { Link } from "react-router-dom";
+import Loader from '../components/Loader';
 import {useState, useEffect} from 'react'
 
 const Home = () => {
@@ -25,37 +26,28 @@ const Home = () => {
             setError(new Error("An unknown error occurred"))
           }
         } finally {
-          setLoading(true)
+          setLoading(false)
         }
     }
 
     loadCandies()
   }, [])
 
-  if(loading){
-    return (
-    <div className="main-centered">
-      <h2 aria-live="polite" className="mb-3">Loading...</h2>
-      <BounceLoader color="#36d7b7"/>
-    </div>)
-  }
+  if(loading) { return <Loader />;}
 
-  if(error){
-    return <h2  className="main-centered" aria-live="assertive">{error.message}</h2>
-  }
+  if(error){ return <h2 className="main-centered" aria-live="assertive">{error.message}</h2> }
 
-  if (candies.length === 0) {
-    return <h2  className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>
-  }
+  if (candies.length === 0) { return <h2 className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2> }
 
   const candiesCards = candies.map(c => 
-        <div className='candy-box' key={c.id}>
-          <h2>{c.name}</h2>
-          <p>{c.price} SEK</p>
-          <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
-           <Button variant="dark">Lägg till i varukorgen</Button>
-        </div>
-        )
+    <div className='candy-box' key={c.id}>
+      <h2>{c.name}</h2>
+      <p>{c.price} SEK</p>
+      <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
+      <Link to={c.id.toString()}>Läs mer</Link>
+      <Button variant="dark">Lägg till i varukorgen</Button>
+    </div>
+  )
 
   return (
     <>
