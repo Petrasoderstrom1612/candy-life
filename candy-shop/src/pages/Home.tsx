@@ -34,18 +34,18 @@ const Home = () => {
 
   if(loading){
     return (
-    <div className="loader">
+    <div className="main-centered">
       <h2 aria-live="polite" className="mb-3">Loading...</h2>
       <BounceLoader color="#36d7b7"/>
     </div>)
   }
 
   if(error){
-    return <h2 aria-live="assertive">{error.message}</h2>
+    return <h2  className="main-centered" aria-live="assertive">{error.message}</h2>
   }
 
   if (candies.length === 0) {
-    return <h2 aria-live="polite">Inga godisar i lager just nu 🍬</h2>
+    return <h2  className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>
   }
 
   return (

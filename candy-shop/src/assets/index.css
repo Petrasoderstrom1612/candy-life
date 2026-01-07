@@ -80,15 +80,6 @@ h1, h2{
   text-align: center;
 }
 
-.loader {
-  display: flex;
-  flex-direction: column;      
-  justify-content: center;    
-  align-items: center; 
-  align-self: center;      
-  flex: 1;      
-}
-
 main {
   margin: 0;
   background-color: #FFF7ED;
@@ -98,6 +89,15 @@ main {
   display: flex;            
   flex-direction: column;    
   flex: 1;
+}
+
+.main-centered {
+  display: flex;
+  flex-direction: column;      
+  justify-content: center;    
+  align-items: center; 
+  align-self: center;      
+  flex: 1;      
 }
 
 .site-logo {
