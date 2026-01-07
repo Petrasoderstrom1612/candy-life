@@ -25,7 +25,7 @@ const Home = () => {
             setError(new Error("An unknown error occurred"))
           }
         } finally {
-          setLoading(false)
+          setLoading(true)
         }
     }
 

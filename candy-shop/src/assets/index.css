@@ -58,7 +58,7 @@ body, html {
 footer {
   background-color: #161616;
   color: #AAAAAA;
-  height: 74px;
+  height: 50px;
   display: flex;
   flex-shrink: 0;
   justify-content: center;
@@ -68,7 +68,7 @@ footer {
 }
 
 header {
-  height: 110px;
+  height: 100px;
   display: flex;
   align-items: center;
   padding-block: 10px;
@@ -106,4 +106,20 @@ main {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
+}
+
+@media (min-width: 768px) { /* ipad */
+  header {
+  height: 110px;
+  }
+
+  footer {
+  height: 60px;
+  }
+}
+
+@media (min-width: 1200px) { /* computer */
+  footer {
+  height: 75px;
+  }
 }
