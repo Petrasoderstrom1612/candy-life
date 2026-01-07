@@ -1,5 +1,9 @@
-export type CandyLocationState = {
-  id: number;
+export interface CandyLocation {
+  pathname: string;
+  search: string;
+  hash: string;
+  state: {id: number} | null;
+  key: string;
 }
 
 export interface CandyImage {
@@ -7,7 +11,7 @@ export interface CandyImage {
   large: string;
 }
 
-export interface Tag {
+interface Tag {
   id: number;
   name: string;
   slug: string;
