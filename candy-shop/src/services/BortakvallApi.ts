@@ -48,13 +48,26 @@ export const getCandies = async (): Promise<Candy[]> => {
     }
 }
 
-export const getOneCandy = async (id: number): Promise<CandyWithDescription[]> => {
-    try{
-        const response = await get<{status: string; data: CandyWithDescription[]}>(`/products${id}`)
-        console.log("data", response.data)
-        return response.data || []
-    } catch (error) {
-        handleError(error)
-        return []
-    }
-}
+export const getOneCandy = async (id: number): Promise<CandyWithDescription> => {
+  try {
+    const response = await get<{ status: string; data: CandyWithDescription }>(
+      `/products/${id}`
+    );
+    console.log("data", response.data);
+    return response.data; // single object now
+  } catch (error) {
+    handleError(error);
+    // fallback single object
+    return {
+      id: 0,
+      name: "",
+      description: "",
+      price: 0,
+      on_sale: false,
+      images: { thumbnail: "", large: "" },
+      stock_status: "instock",
+      stock_quantity: 0,
+      tags: [],
+    };
+  }
+};
