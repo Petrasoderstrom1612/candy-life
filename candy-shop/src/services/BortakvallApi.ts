@@ -1,7 +1,7 @@
 import axios from "axios";
 import { AxiosError } from 'axios';
-import type {Candy} from "./Types"
-// import type {Tag, Candy, CandyWithDescription} from "./Types"
+// import type {Candy} from "./Types"
+import type {Candy, CandyWithDescription} from "./Types"
 
 console.log(import.meta.env.VITE_API_BASEURL)
 const BASE_URL = import.meta.env.VITE_API_BASEURL
@@ -45,5 +45,16 @@ export const getCandies = async (): Promise<Candy[]> => {
     } catch (error) {
         handleError(error)
         return []  // fallback empty array
+    }
+}
+
+export const getOneCandy = async (id: number): Promise<CandyWithDescription[]> => {
+    try{
+        const response = await get<{status: string; data: CandyWithDescription[]}>(`/products${id}`)
+        console.log("data", response.data)
+        return response.data || []
+    } catch (error) {
+        handleError(error)
+        return []
     }
 }

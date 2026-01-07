@@ -48,6 +48,8 @@ const Home = () => {
     return <h2  className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>
   }
 
+  // const candiesCards = 
+
   return (
     <>
       <h1>Våra godisar är de bästa!</h1>
