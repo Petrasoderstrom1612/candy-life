@@ -6,10 +6,38 @@ import {useState, useEffect} from 'react'
 
 const Home = () => {
   const [candies, setCandies] = useState<Candy[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<Error | null>(null)
 
   useEffect(() => {
-    getCandies().then(setCandies)
+    const loadCandies = async () => {
+        setLoading(true)
+        setError(null)
+
+        try {
+          const data = await getCandies() // API call
+          setCandies(data)
+        } catch (err) {
+          if (err instanceof Error) {
+            setError(err)
+          } else {
+            setError(new Error("An unknown error occurred"))
+          }
+        } finally {
+          setLoading(false)
+        }
+    }
+
+    loadCandies()
   }, [])
+
+  if(loading){
+    return <h1 aria-live="polite">Loading...</h1>
+  }
+
+  if(error){
+    return <h1 aria-live="assertive">{error.message}</h1>
+  }
 
   return (
     <>
