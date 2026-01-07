@@ -1,4 +1,5 @@
 import '../assets/app.scss'
+import { BounceLoader } from 'react-spinners';
 import Button from 'react-bootstrap/Button'
 import type {Candy} from '../services/Types'
 import { getCandies } from '../services/BortakvallApi'
@@ -32,11 +33,19 @@ const Home = () => {
   }, [])
 
   if(loading){
-    return <h1 aria-live="polite">Loading...</h1>
+    return (
+    <div className="loader">
+      <h2 aria-live="polite" className="mb-3">Loading...</h2>
+      <BounceLoader color="#36d7b7"/>
+    </div>)
   }
 
   if(error){
-    return <h1 aria-live="assertive">{error.message}</h1>
+    return <h2 aria-live="assertive">{error.message}</h2>
+  }
+
+  if (candies.length === 0) {
+    return <h2 aria-live="polite">Inga godisar i lager just nu 🍬</h2>
   }
 
   return (
