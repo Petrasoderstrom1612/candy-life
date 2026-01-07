@@ -1,14 +1,17 @@
-import {useParams, useLocation, Link} from "react-router-dom"
+import {useLocation, Link} from "react-router-dom"
 
 const CandyDetails = () => {
-  const params = useParams()
-  console.log("params", params) //id
   const location = useLocation() 
-  console.log(location) 
+  console.log(location?.state?.id)
 
   return (
     <section>
-      <Link to=".." relative="path" className="back-button">&larr; <span>Tillbaka till all godis</span></Link>
+      <Link 
+        aria-label={`Gå tillbaka till all godis`} 
+        to=".." 
+        relative="path" 
+        className="back-button"
+      >&larr; <span>Tillbaka till all godis</span></Link>
     </section>
   )
 }

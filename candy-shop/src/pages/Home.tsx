@@ -44,7 +44,13 @@ const Home = () => {
       <h2>{c.name}</h2>
       <p>{c.price} SEK</p>
       <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
-      <Link to={c.name.toLowerCase().replace(/\s+/g, "-")} aria-label={`Visa detaljer för ${c.name}, pris: ${c.price} SEK`} className="details-link">Läs mer</Link>
+      <Link 
+        aria-label={`Visa detaljer för ${c.name}, pris: ${c.price} SEK`} 
+        className="details-link"
+        to={c.name.toLowerCase().replace(/\s+/g, "-")} 
+        state={{ id: c.id}}
+        >Läs mer
+      </Link>
       <Button variant="dark">Lägg till i varukorgen</Button>
     </div>
   )
