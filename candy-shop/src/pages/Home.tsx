@@ -48,19 +48,20 @@ const Home = () => {
     return <h2  className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>
   }
 
-  // const candiesCards = 
+  const candiesCards = candies.map(c => 
+        <div className='candy-box' key={c.id}>
+          <h2>{c.name}</h2>
+          <p>{c.price} SEK</p>
+          <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
+           <Button variant="dark">Lägg till i varukorgen</Button>
+        </div>
+        )
 
   return (
     <>
       <h1>Våra godisar är de bästa!</h1>
       <div className="candies-container">
-        {candies.length > 0 && candies.map(c => <div className='candy-box' key={c.id}>
-          <h2>{c.name}</h2>
-          <p>{c.price} SEK</p>
-          <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
-          <Button variant="dark">Lägg till i varukorgen</Button>
-        </div>
-        )}
+        {candies.length > 0 && candiesCards}
       </div>
     </>
   )
