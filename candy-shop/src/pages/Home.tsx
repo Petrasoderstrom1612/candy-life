@@ -76,7 +76,7 @@ const Home = () => {
       <TagFilters availableTags={tagSlugs} />
 
       <div className="candies-container">
-        {filteredCandies.length > 0 ? candiesCards : (
+        {possiblyfilteredCandies.length > 0 ? candiesCards : (
           <p>Inga godisar hittades för vald filter.</p>
         )}
       </div>
