@@ -34,9 +34,7 @@ const Home = () => {
   }, [])
 
   if(loading) { return <Loader />;}
-
   if(error){ return <h2 className="main-centered" aria-live="assertive">{error.message}</h2> }
-
   if (candies.length === 0) { return <h2 className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2> }
 
   const candiesCards = candies.map(c => 

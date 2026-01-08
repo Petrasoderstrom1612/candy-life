@@ -1,28 +1,42 @@
 import type { CandyLocation, CandyWithDescription } from "../services/Types";
 import { getOneCandy } from '../services/BortakvallApi';
 import { Link, useLocation } from "react-router-dom";
+import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
 
 const CandyDetails = () => {
   const [candy, setCandy] = useState<CandyWithDescription | null>(null);
+  const [error, setError] = useState<Error | null>(null)
+  const [loading, setLoading] = useState(false)
   const location = useLocation() as CandyLocation;
   const id = location.state?.id ?? null;
 
   useEffect(() => {
     if (id === null) return;
-
+    
     const loadCandy = async () => {
+      setLoading(true)
+      setError(null)
       try {
         const data = await getOneCandy(id);
         setCandy(data);
         console.log("name", data.name);
-      } catch (error) {
-        console.log(error);
-      }
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err)
+        } else {
+          setError(new Error("An unknown error occurred"))
+        }
+      } finally {
+          setLoading(false)
+        } 
     };
 
     loadCandy();
   }, [id]);
+
+  if(loading) { return <Loader />;}
+  if(error){ return <h2 className="main-centered" aria-live="assertive">{error.message}</h2> }
 
   return (
     <section>
