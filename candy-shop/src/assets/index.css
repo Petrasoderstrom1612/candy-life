@@ -59,8 +59,86 @@ html {
   margin-top: 1em;
 }
 
+.candy-type {
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFEAD0;
+  color: #4D4D4D;
+  transition: 200ms all cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.candy-type:hover {
+  color: #FFEAD0;
+}
+
+.candy-type:focus {
+  outline: none;
+}
+
+.candy-type.selected {
+  color: #FFEAD0;
+}
+
+.candy-type.gelatinfri:hover,
+.candy-type.gelatinfri.selected {
+  background-color: #E17654; 
+}
+
+.candy-type.palmoljefri:hover,
+.candy-type.palmoljefri.selected {
+  background-color: #555409; 
+}
+
+.candy-type.vegansk:hover,
+.candy-type.vegansk.selected {
+  background-color: #115E59; 
+}
+
+.candy-type.nyhet:hover,
+.candy-type.nyhet.selected {
+  background-color: #ffa704; 
+}
+
+.candy-type.clear-filters {
+  margin-left: -20px;
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  text-decoration: underline;
+  background-color: transparent;
+  color: #4D4D4D;
+}
+
+.candy-type.clear-filters:hover {
+  color: #4D4D4D !important;
+}
+
+.clear-filters {
+  margin-left: -20px;
+  height: 34px;
+  padding: 6px 26px;
+  font-style: normal;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  text-decoration: underline;
+  background-color: transparent;
+  color: #4D4D4D;
+}
+
+.clear-filters:hover{
+    color:#4D4D4D !important;
+}
+
 .details-link {
-  text-decoration: none !important;
   color: black;
   justify-content: space-between;
   display: flex;
@@ -142,6 +220,12 @@ main {
   text-transform: uppercase;
   font-weight: 900;
   font-size: 25px;
+}
+
+.tag-filter-buttons{
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 0.5em;
 }
 
 @media (min-width: 768px) {/* ipad */

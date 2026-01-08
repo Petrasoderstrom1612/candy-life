@@ -24,12 +24,12 @@ const TagFilters: React.FC<TagFiltersProps> = ({ availableTags }) => {
         <button
           key={tag}
           onClick={() => adjustTagParam(tag)}
-          className={tagParam === tag ? "selected" : ""}
+          className={`candy-type ${tag} ${tagParam === tag ? "selected" : ""}`}
         >
           {tag.charAt(0).toUpperCase() + tag.slice(1)} 
         </button>
       ))}
-      {tagParam && (<button onClick={() => adjustTagParam(null)} className="clear-filters">Clear filters</button>)}
+      {tagParam && (<button onClick={() => adjustTagParam(null)} className="candy-type clear-filters">Clear filters</button>)}
     </div>
   );
 };
