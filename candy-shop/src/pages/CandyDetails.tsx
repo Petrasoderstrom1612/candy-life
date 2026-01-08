@@ -68,6 +68,18 @@ const CandyDetails = () => {
             <div className="one-candy-div-p">
               <p>{formatHTML(candy?.description)}</p>
               {candy?.tags?.length ? (<p>{formatTags(candy.tags)}</p>) : null}
+              {candy?.tags?.length ? candy.tags.map((t) => (
+            <Link
+              key={t.id}
+              aria-label={`Se alla ${t.name} godis`}
+              className="candy-type candy-type-detail"
+              to={`..?tag=${t.slug}`}
+              relative="path"
+            >
+              {t.name} godis
+            </Link>
+              ))
+            : null}
             </div>
         </div>
     </section>
