@@ -132,8 +132,9 @@ main {
   align-items: center;
 }
 
-.one-candy-p {
+.one-candy-div-p {
   padding: 1em;
+  margin-bottom: 1em;
 }
 
 .one-candy-img {
@@ -172,7 +173,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 2em;
+    padding: 0 1em;
   }
 
   .one-candy-detail-div-h-img {

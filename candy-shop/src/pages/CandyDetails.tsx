@@ -1,4 +1,4 @@
-import type { CandyLocation, CandyWithDescription } from "../services/Types";
+import type { CandyLocation, CandyWithDescription, Tag } from "../services/Types";
 import { getOneCandy } from '../services/BortakvallApi';
 import { Link, useLocation } from "react-router-dom";
 import Loader from '../components/Loader';
@@ -45,6 +45,23 @@ const CandyDetails = () => {
       .body.innerText;
   }
 
+  type Tag = { id: number; name: string; slug: string };
+  console.log("tags", candy?.tags)
+
+  const formatTags = (tags?: Tag[]): string => {
+  if (!tags || tags.length === 0) return "";
+
+  if (tags.length === 1) return tags[0].name;
+
+  if (tags.length === 2)
+    return `${tags[0].name} och ${tags[1].name}`;
+
+  return `${tags
+    .slice(0, -1)
+    .map(tag => tag.name)
+    .join(", ")} och ${tags[tags.length - 1].name}`;
+}
+
   return (
     <section className="one-candy-section">
       <Link
@@ -63,10 +80,10 @@ const CandyDetails = () => {
               </div>
               <img className="one-candy-img" src={`https://www.bortakvall.se${candy?.images?.large}`} alt={`${candy?.name}`}/>
             </div>
-            <p className="one-candy-p">
-              {htmlToInnerText(candy?.description)}
-              {/* <label className={`van-type van-type-${candy?.type}`}>{candy?.type}</label> */}
-            </p>
+            <div className="one-candy-div-p">
+              <p>{htmlToInnerText(candy?.description)}</p>
+              {candy?.tags?.length ? (<p>{formatTags(candy.tags)}</p>) : null}
+            </div>
         </div>
     </section>
   );
