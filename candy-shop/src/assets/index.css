@@ -295,4 +295,8 @@ main {
   .one-candy-detail-div-h {
     min-width: 25em;
   }
+
+  .tag-filter-buttons {
+    justify-content: center;
+  }
 }
