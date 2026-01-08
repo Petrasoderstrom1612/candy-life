@@ -38,8 +38,15 @@ const CandyDetails = () => {
   if(loading) { return <Loader />;}
   if(error){ return <h2 className="main-centered" aria-live="assertive">{error.message}</h2> }
 
+  const htmlToInnerText = (html?: string): string => {
+    if (!html) return "";
+    return new DOMParser()
+      .parseFromString(html, "text/html")
+      .body.innerText;
+  }
+
   return (
-    <section>
+    <section className="one-candy-section">
       <Link
         aria-label="Gå tillbaka till all godis"
         to=".."
@@ -48,7 +55,19 @@ const CandyDetails = () => {
       >
         &larr; <span>Tillbaka till all godis</span>
       </Link>
-      {candy?.name}
+        <div className="one-candy-detail-div">
+            <div className="one-candy-detail-div-h-img">
+              <div className="one-candy-detail-div-h">
+                <h2 className="one-candy-h2">{candy?.name}</h2>
+                <h3 className="one-candy-h3">${candy?.price} SEK</h3>
+              </div>
+              <img className="one-candy-img" src={`https://www.bortakvall.se${candy?.images?.large}`} alt={`${candy?.name}`}/>
+            </div>
+            <p className="one-candy-p">
+              {htmlToInnerText(candy?.description)}
+              {/* <label className={`van-type van-type-${candy?.type}`}>{candy?.type}</label> */}
+            </p>
+        </div>
     </section>
   );
 };

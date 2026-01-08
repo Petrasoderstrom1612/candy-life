@@ -29,5 +29,5 @@ export interface Candy {
 }
 
 export type CandyWithDescription = Candy & {
-  description: string
+  description?: string;
 }

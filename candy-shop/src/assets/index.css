@@ -18,7 +18,7 @@
   display: block;
   color: black;
   text-decoration: none;
-  margin-top: 60px;
+  margin-bottom: 1em;
   margin-left: 26px;
 }
 
@@ -115,6 +115,29 @@ main {
   flex: 1;      
 }
 
+.one-candy-h2{
+  margin-top: 0.5em;
+}
+
+.one-candy-h3{
+  text-align: center;
+}
+
+.one-candy-detail-div {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.one-candy-p{
+padding: 1em;
+}
+
+.one-candy-img{
+max-width: 100%;
+}
+
 .site-logo {
   color: black;
   margin-right: auto;
@@ -123,18 +146,73 @@ main {
   font-size: 25px;
 }
 
+
 @media (min-width: 768px) { /* ipad */
+  .back-button {
+  margin-top: 2em;
+  }
+  
   header {
-  height: 110px;
+    height: 110px;
+  }
+  
+  footer {
+    height: 60px;
   }
 
-  footer {
-  height: 60px;
+  .one-candy-detail-div {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   }
+  
+
+  .one-candy-detail-div-h{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 2em;
+  }
+
+  .one-candy-detail-div-h-img{
+    display: flex;
+  }
+
+  .one-candy-h2{
+  text-align: left;
+  margin-bottom: 1em;
+}
+
+.one-candy-img{
+  max-width: 390px;
+}
+
+.one-candy-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 }
 
 @media (min-width: 1200px) { /* computer */
+  .back-button {
+    margin-top: 3em;
+  }
+  
+  header {
+    height: 110px;
+  }
+  
   footer {
-  height: 75px;
+    height: 75px;
+  }
+
+  .one-candy-h2{
+  text-align: center;
+  }
+
+  .one-candy-detail-div-h{
+    min-width: 25em;
   }
 }
