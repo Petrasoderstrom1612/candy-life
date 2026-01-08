@@ -11,11 +11,6 @@ export interface CandyImage {
   large: string;
 }
 
-export interface Tag {
-  id: number;
-  name: string;
-  slug: string;
-}
 
 export interface Candy {
   id: number;
@@ -30,6 +25,12 @@ export interface Candy {
 
 export type CandyWithDescription = Candy & {
   description: string;
+}
+
+export interface Tag {
+  id: number;
+  name: string;
+  slug: string;
 }
 
 export type TagSlug = "gelatinfri" | "palmoljefri" | "vegansk" | "nyhet";
