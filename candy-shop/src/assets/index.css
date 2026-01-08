@@ -2,13 +2,13 @@
   box-sizing: border-box;
 }
 
-#root{
+#root {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.activenav{
+.activenav {
   font-weight: bold !important;
   text-decoration: underline !important;
   color: #161616 !important;
@@ -26,7 +26,8 @@ body::-webkit-scrollbar {
   display: none;
 }
 
-body, html {
+body,
+html {
   -ms-overflow-style: none;
   scrollbar-width: none;
   height: 100%;
@@ -35,14 +36,14 @@ body, html {
 
 .candies-container {
   display: flex;
-  flex-wrap: wrap;          
-  gap: 1.5rem;              
-  justify-content: center; 
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
 }
 
-.candy-box{
-  flex: 1 1 500px;    
-  max-width: 350px;    
+.candy-box {
+  flex: 1 1 500px;
+  max-width: 350px;
   border: 1px solid black;
   padding: 1em 0;
   display: flex;
@@ -50,7 +51,7 @@ body, html {
   justify-content: center;
   align-items: center;
   margin: 1.5em 0;
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .candy-box img {
@@ -59,20 +60,20 @@ body, html {
   display: block;
 }
 
-.candy-box button{
+.candy-box button {
   margin-top: 1em;
 }
 
-.details-link{
-  text-decoration: none !important;  
-  color:black;
+.details-link {
+  text-decoration: none !important;
+  color: black;
   justify-content: space-between;
   display: flex;
 }
 
 footer {
   background-color: #161616;
-  color: #AAAAAA;
+  color: #aaaaaa;
   height: 50px;
   display: flex;
   flex-shrink: 0;
@@ -87,39 +88,40 @@ header {
   display: flex;
   align-items: center;
   padding-block: 10px;
-  background-color: #FFF;
+  background-color: #fff;
   padding: 0 2em;
 }
 
-h1, h2{
+h1,
+h2 {
   text-align: center;
 }
 
 main {
   margin: 0;
-  background-color: #FFF7ED;
+  background-color: #fff7ed;
   font-family: "Inter", sans-serif;
   padding: 1em 2em;
-  min-height: 0; 
-  display: flex;            
-  flex-direction: column;    
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
   flex: 1;
 }
 
 .main-centered {
   display: flex;
-  flex-direction: column;      
-  justify-content: center;    
-  align-items: center; 
-  align-self: center;      
-  flex: 1;      
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  flex: 1;
 }
 
-.one-candy-h2{
+.one-candy-h2 {
   margin-top: 0.5em;
 }
 
-.one-candy-h3{
+.one-candy-h3 {
   text-align: center;
 }
 
@@ -130,12 +132,12 @@ main {
   align-items: center;
 }
 
-.one-candy-p{
-padding: 1em;
+.one-candy-p {
+  padding: 1em;
 }
 
-.one-candy-img{
-max-width: 100%;
+.one-candy-img {
+  max-width: 100%;
 }
 
 .site-logo {
@@ -146,73 +148,71 @@ max-width: 100%;
   font-size: 25px;
 }
 
-
-@media (min-width: 768px) { /* ipad */
+@media (min-width: 768px) {/* ipad */
   .back-button {
-  margin-top: 2em;
+    margin-top: 2em;
   }
-  
+
   header {
     height: 110px;
   }
-  
+
   footer {
     height: 60px;
   }
 
   .one-candy-detail-div {
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
-  
 
-  .one-candy-detail-div-h{
+  .one-candy-detail-div-h {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 2em;
   }
 
-  .one-candy-detail-div-h-img{
+  .one-candy-detail-div-h-img {
     display: flex;
   }
 
-  .one-candy-h2{
-  text-align: left;
-  margin-bottom: 1em;
+  .one-candy-h2 {
+    text-align: left;
+    margin-bottom: 1em;
+  }
+
+  .one-candy-img {
+    max-width: 390px;
+  }
+
+  .one-candy-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
-.one-candy-img{
-  max-width: 390px;
-}
-
-.one-candy-section{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-}
-
-@media (min-width: 1200px) { /* computer */
+@media (min-width: 1200px) {/* computer */
   .back-button {
     margin-top: 3em;
   }
-  
+
   header {
     height: 110px;
   }
-  
+
   footer {
     height: 75px;
   }
 
-  .one-candy-h2{
-  text-align: center;
+  .one-candy-h2 {
+    text-align: center;
   }
 
-  .one-candy-detail-div-h{
+  .one-candy-detail-div-h {
     min-width: 25em;
   }
 }
