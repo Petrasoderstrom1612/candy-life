@@ -1,6 +1,5 @@
 import axios from "axios";
 import { AxiosError } from 'axios';
-// import type {Candy} from "./Types"
 import type {Candy, CandyWithDescription} from "./Types"
 
 console.log(import.meta.env.VITE_API_BASEURL)
