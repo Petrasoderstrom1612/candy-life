@@ -31,3 +31,9 @@ export interface Candy {
 export type CandyWithDescription = Candy & {
   description?: string;
 }
+
+export type TagSlug = "gelatinfri" | "palmoljefri" | "vegansk" | "nyhet";
+
+export interface TagFiltersProps {
+  availableTags: TagSlug[]; 
+}
