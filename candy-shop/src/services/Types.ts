@@ -2,7 +2,7 @@ export interface CandyLocation {
   pathname: string;
   search: string;
   hash: string;
-  state: {id: number} | null;
+  state: {id?: number; tagParam?: string} |null;
   key: string;
 }
 
@@ -29,7 +29,7 @@ export interface Candy {
 }
 
 export type CandyWithDescription = Candy & {
-  description?: string;
+  description: string;
 }
 
 export type TagSlug = "gelatinfri" | "palmoljefri" | "vegansk" | "nyhet";

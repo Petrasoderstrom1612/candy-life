@@ -15,6 +15,8 @@ const Home = () => {
 
   const [searchParams] = useSearchParams();
   const tagParam = searchParams.get("tag") as TagSlug | null;
+  const queryString = searchParams.toString() //all search filters in the URL
+
 
   const possiblyfilteredCandies = tagParam
     ? candies.filter(c => 
@@ -57,7 +59,7 @@ const Home = () => {
         aria-label={`Visa detaljer för ${c.name}, pris: ${c.price} SEK`} 
         className="details-link"
         to={c.name.toLowerCase().replace(/\s+/g, "-")} 
-        state={{ id: c.id }}
+        state={{ id: c.id, queryString, tagParam }}
       >
         Läs mer
       </Link>

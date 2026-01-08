@@ -2,7 +2,7 @@ import type { CandyLocation, CandyWithDescription} from "../services/Types";
 import { formatHTML } from "../utils/formatHTML";
 import { formatTags } from "../utils/formatTags";
 import { getOneCandy } from '../services/BortakvallApi';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams} from "react-router-dom";
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
 
@@ -12,6 +12,13 @@ const CandyDetails = () => {
   const [loading, setLoading] = useState(false)
   const location = useLocation() as CandyLocation;
   const id = location.state?.id ?? null;
+
+  const tag =  location.state?.tagParam ?? "";
+  console.log(tag)
+
+  // const queryString = location.state?.queryString || ""
+   const params = useParams()
+  console.log("params",params) 
 
   useEffect(() => {
     if (id === null) return;
@@ -43,12 +50,12 @@ const CandyDetails = () => {
   return (
     <section className="one-candy-section">
       <Link
-        aria-label="Gå tillbaka till all godis"
-        to=".."
+        aria-label={`Gå tillbaka till ${tag} godis`}
+        to = {tag ? `..?tag=${tag}` : ".."}
         relative="path"
         className="back-button"
       >
-        &larr; <span>Tillbaka till all godis</span>
+        &larr; <span>Tillbaka till {tag ? tag : "all"} godis</span>
       </Link>
         <div className="one-candy-detail-div">
             <div className="one-candy-detail-div-h-img">
