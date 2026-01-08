@@ -65,7 +65,7 @@ export const getOneCandy = async (id: number): Promise<CandyWithDescription> => 
       price: 0,
       on_sale: false,
       images: { thumbnail: "", large: "" },
-      stock_status: "instock",
+      stock_status: "outofstock",
       stock_quantity: 0,
       tags: [],
     };
