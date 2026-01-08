@@ -22,6 +22,7 @@ const TagFilters: React.FC<TagFiltersProps> = ({ availableTags }) => {
     <div className="tag-filter-buttons">
       {availableTags.map(tag => (
         <button
+          aria-label={`Filtrera fram ${tag} godistyp.`}
           key={tag}
           onClick={() => adjustTagParam(tag)}
           className={`candy-type ${tag} ${tagParam === tag ? "selected" : ""}`}
