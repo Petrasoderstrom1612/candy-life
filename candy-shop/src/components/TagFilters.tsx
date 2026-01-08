@@ -29,7 +29,7 @@ const TagFilters: React.FC<TagFiltersProps> = ({ availableTags }) => {
           {tag.charAt(0).toUpperCase() + tag.slice(1)} 
         </button>
       ))}
-      {tagParam && (<button onClick={() => adjustTagParam(null)} className="candy-type clear-filters">Clear filters</button>)}
+      {tagParam && (<button onClick={() => adjustTagParam(null)} className="candy-type clear-filters">Rensa filter</button>)}
     </div>
   );
 };
