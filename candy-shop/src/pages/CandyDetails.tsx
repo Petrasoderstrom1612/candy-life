@@ -1,6 +1,7 @@
 import type { CandyLocation, CandyWithDescription} from "../services/Types";
 import { formatTags } from "../utils/formatTags";
 import { getOneCandy } from '../services/BortakvallApi';
+import { htmlToInnerText } from "../utils/formatHTML";
 import { Link, useLocation } from "react-router-dom";
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
@@ -38,13 +39,6 @@ const CandyDetails = () => {
 
   if(loading) { return <Loader />;}
   if(error){ return <h2 className="main-centered" aria-live="assertive">{error.message}</h2> }
-
-  const htmlToInnerText = (html?: string): string => {
-    if (!html) return "";
-    return new DOMParser()
-      .parseFromString(html, "text/html")
-      .body.innerText;
-  }
 
   return (
     <section className="one-candy-section">
