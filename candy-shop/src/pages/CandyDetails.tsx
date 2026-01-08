@@ -1,7 +1,7 @@
 import type { CandyLocation, CandyWithDescription} from "../services/Types";
+import { formatHTML } from "../utils/formatHTML";
 import { formatTags } from "../utils/formatTags";
 import { getOneCandy } from '../services/BortakvallApi';
-import { htmlToInnerText } from "../utils/formatHTML";
 import { Link, useLocation } from "react-router-dom";
 import Loader from '../components/Loader';
 import { useEffect, useState } from 'react';
@@ -59,7 +59,7 @@ const CandyDetails = () => {
               <img className="one-candy-img" src={`https://www.bortakvall.se${candy?.images?.large}`} alt={`${candy?.name}`}/>
             </div>
             <div className="one-candy-div-p">
-              <p>{htmlToInnerText(candy?.description)}</p>
+              <p>{formatHTML(candy?.description)}</p>
               {candy?.tags?.length ? (<p>{formatTags(candy.tags)}</p>) : null}
             </div>
         </div>
