@@ -45,9 +45,6 @@ const CandyDetails = () => {
       .body.innerText;
   }
 
-  type Tag = { id: number; name: string; slug: string };
-  console.log("tags", candy?.tags)
-
   const formatTags = (tags?: Tag[]): string => {
   if (!tags || tags.length === 0) return "";
 

@@ -11,7 +11,7 @@ export interface CandyImage {
   large: string;
 }
 
-interface Tag {
+export interface Tag {
   id: number;
   name: string;
   slug: string;
