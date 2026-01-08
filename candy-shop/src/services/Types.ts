@@ -2,7 +2,11 @@ export interface CandyLocation {
   pathname: string;
   search: string;
   hash: string;
-  state: {id?: number; tagParam?: string} |null;
+  state: {
+    id?: number;
+    tagParam?: string;
+    queryString?: string; // <-- add this
+  } | null;
   key: string;
 }
 
