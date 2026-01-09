@@ -291,9 +291,15 @@ main {
 }
 
 /*shopping cart*/
+.price{
+  padding-right:5px;
+  margin-bottom: 0;
+}
+
 .price-buttons{
   display: flex;
   align-items: center;
+  padding-bottom: 0.3rem;
 }
 
 .shopping-item-quantity{
@@ -311,7 +317,6 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem;
 }
 
 .shopping-cart-icon-btn svg {
