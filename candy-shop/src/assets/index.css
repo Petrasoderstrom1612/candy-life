@@ -59,7 +59,7 @@ html {
   margin-top: 1em;
 }
 
-/**filters**/
+/**filter tags**/
 
 .candy-type {
   height: 34px;
@@ -165,13 +165,11 @@ html {
   transform: translateX(0); /* We'll just show/hide with conditional rendering */
 }
 
-/* Cart items inside overlay */
-.cart-overlay p {
+.cart-overlay p { 
   margin: 0.5rem 0;
 }
 
-/* Close button */
-.cart-overlay button {
+/* .cart-overlay button { 
   background: #ff6b6b;
   border: none;
   color: white;
@@ -179,10 +177,10 @@ html {
   cursor: pointer;
   margin-top: 1rem;
   border-radius: 4px;
-}
+} */
 
-/* Cart button in header */
-.cart-btn {
+
+.cart-btn { /*for dot in shopping cart btn*/
   position: relative;
 }
 
@@ -198,8 +196,8 @@ html {
   right: 0;
 }
 
-/* Remove the old default */
-.cart-btn::after {
+
+.cart-btn::after {/* Remove the old default */
   content: none; /* no dot by default */
 }
 
@@ -272,6 +270,7 @@ main {
   flex: 1;
 }
 
+/*candy detail page*/
 .one-candy-h2 {
   margin-top: 0.5em;
 }
@@ -295,6 +294,8 @@ main {
 .one-candy-img {
   max-width: 100%;
 }
+
+/**/
 
 .site-logo {
   color: black;
