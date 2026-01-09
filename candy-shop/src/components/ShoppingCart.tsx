@@ -1,3 +1,4 @@
+import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useCart } from "../context/useCart";
 
 const ShoppingCart = () => {
@@ -16,8 +17,12 @@ const ShoppingCart = () => {
       {cart.length === 0 && <p>Tom varukorg</p>}
 
       {cart.map((c, index) => (
-        <div key={index}>
-          {c.name} – {c.price} SEK
+        <div key={index} className="shopping-cart-item">
+          <div className="shopping-item-quantity">1x {c.name} </div>
+          <div className="price-buttons">{c.price} SEK 
+            <button aria-label={`Add {c.name} to the shopping cart`} className="shopping-cart-icon-btn"><CiCirclePlus /></button>
+            <button aria-label={`Remove {c.name} from the shopping cart`} className="shopping-cart-icon-btn"><CiCircleMinus /></button>
+          </div>
         </div>
       ))}
 

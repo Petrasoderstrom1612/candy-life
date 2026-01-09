@@ -151,8 +151,8 @@ html {
   position: fixed;
   top: 0;
   right: 0;
-  width: 300px;
-  max-width: 80%;
+  width: 320px;
+  max-width: 100%;
   height: 100%;
   background-color: #fff;
   border-left: 2px solid #ccc;
@@ -162,10 +162,6 @@ html {
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
   transform: translateX(0); /* show/hide with conditional rendering */
-}
-
-.cart-overlay p { 
-  margin: 0.5rem 0;
 }
 
 
@@ -294,8 +290,41 @@ main {
   max-width: 100%;
 }
 
-/**/
+/*shopping cart*/
+.price-buttons{
+  display: flex;
+  align-items: center;
+}
 
+.shopping-item-quantity{
+  max-width: 160px;
+}
+
+.shopping-cart-icon-btn {
+  all: unset;/* removes default btn styling */
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+}
+
+.shopping-cart-icon-btn svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+.shopping-cart-item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #D2D2D2;
+  margin: 20px 0;
+  width: 100%;
+    overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/**/
 .site-logo {
   color: black;
   margin-right: auto;
