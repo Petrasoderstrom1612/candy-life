@@ -11,7 +11,7 @@ const ShoppingCart = () => {
 
   return (
     <div className="cart-overlay">
-      <button onClick={toggleCart} aria-label="Close shopping cart">X</button>
+      <button onClick={toggleCart} aria-label="Close shopping cart" className="shopping-cart-close-btn">X</button>
       <h3>Varukorg</h3>
 
       {cart.length === 0 && <p>Tom varukorg</p>}

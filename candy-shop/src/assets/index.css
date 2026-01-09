@@ -300,6 +300,11 @@ main {
   max-width: 160px;
 }
 
+.shopping-cart-close-btn{
+  display: flex;
+  justify-self: flex-end;
+}
+
 .shopping-cart-icon-btn {
   all: unset;/* removes default btn styling */
   cursor: pointer;
