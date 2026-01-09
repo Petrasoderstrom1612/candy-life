@@ -15,10 +15,10 @@ const Header = () => {
       <nav className="d-flex align-items-center gap-3">
         <NavLink to="/" className={({ isActive }) => (isActive ? "activenav" : undefined)}>Home</NavLink>
         <Button
-          className={`cart-btn ${cart.length > 0 ? "has-items" : ""}`}
+          className={`cart-dot ${cart.length > 0 ? "has-items" : ""}`}
           variant={cart.length > 0 ? "success" : "outline-dark"}
           onClick={toggleCart}
-          aria-label="Shopping cart"
+          aria-label="Show shopping cart"
         >
           <TfiShoppingCart />
         </Button>

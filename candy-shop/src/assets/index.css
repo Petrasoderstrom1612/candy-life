@@ -60,7 +60,6 @@ html {
 }
 
 /**filter tags**/
-
 .candy-type {
   height: 34px;
   padding: 6px 26px;
@@ -162,29 +161,19 @@ html {
   z-index: 1000;
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
-  transform: translateX(0); /* We'll just show/hide with conditional rendering */
+  transform: translateX(0); /* show/hide with conditional rendering */
 }
 
 .cart-overlay p { 
   margin: 0.5rem 0;
 }
 
-/* .cart-overlay button { 
-  background: #ff6b6b;
-  border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  margin-top: 1rem;
-  border-radius: 4px;
-} */
 
-
-.cart-btn { /*for dot in shopping cart btn*/
+.cart-dot { 
   position: relative;
 }
 
-.cart-btn.has-items::after {
+.cart-dot.has-items::after {
   content: '';
   display: block;
   width: 10px;
@@ -197,7 +186,7 @@ html {
 }
 
 
-.cart-btn::after {/* Remove the old default */
+.cart-dot::after {/* Remove the old default */
   content: none; /* no dot by default */
 }
 
@@ -215,7 +204,7 @@ html {
 }
 
 .clear-filters:hover{
-    color:#4D4D4D !important;
+  color:#4D4D4D !important;
 }
 
 .details-link {
@@ -234,6 +223,16 @@ footer {
   align-items: center;
   margin-top: auto;
   font-weight: 500;
+}
+
+.go-to-shopping-form-btn { 
+  background: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 4px;
 }
 
 header {

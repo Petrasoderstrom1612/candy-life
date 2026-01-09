@@ -10,17 +10,18 @@ const ShoppingCart = () => {
 
   return (
     <div className="cart-overlay">
+      <button onClick={toggleCart} aria-label="Close shopping cart">X</button>
       <h3>Varukorg</h3>
 
       {cart.length === 0 && <p>Tom varukorg</p>}
 
       {cart.map((c, index) => (
-        <p key={index}>
+        <div key={index}>
           {c.name} – {c.price} SEK
-        </p>
+        </div>
       ))}
 
-      <button onClick={toggleCart}>Stäng</button>
+      <button className="go-to-shopping-form-btn">Gå till kassan</button>
     </div>
   );
 };
