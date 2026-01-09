@@ -59,6 +59,8 @@ html {
   margin-top: 1em;
 }
 
+/**filters**/
+
 .candy-type {
   height: 34px;
   padding: 6px 26px;
@@ -143,6 +145,62 @@ html {
 
 .candy-type.clear-filters:hover {
   color: #4D4D4D !important;
+}
+
+/**cart**/
+.cart-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  max-width: 80%;
+  height: 100%;
+  background-color: #fff;
+  border-left: 2px solid #ccc;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  z-index: 1000;
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(0); /* We'll just show/hide with conditional rendering */
+}
+
+/* Cart items inside overlay */
+.cart-overlay p {
+  margin: 0.5rem 0;
+}
+
+/* Close button */
+.cart-overlay button {
+  background: #ff6b6b;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+
+/* Cart button in header */
+.cart-btn {
+  position: relative;
+}
+
+.cart-btn.has-items::after {
+  content: '';
+  display: block;
+  width: 10px;
+  height: 10px;
+  background: rgb(11, 240, 11);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+/* Remove the old default */
+.cart-btn::after {
+  content: none; /* no dot by default */
 }
 
 .clear-filters {

@@ -1,12 +1,13 @@
 import '../assets/app.scss';
 import Button from 'react-bootstrap/Button';
-import type { Candy } from '../services/Types';
+import type { Candy, TagSlug } from '../services/Types';
 import { getCandies } from '../services/BortakvallApi';
 import { Link, useSearchParams } from "react-router-dom";
 import Loader from '../components/Loader';
 import TagFilters from '../components/TagFilters';
-import type {TagSlug} from '../services/Types';
+import { useCart } from "../context/useCart";
 import { useState, useEffect } from 'react';
+
 
 const Home = () => {
   const [candies, setCandies] = useState<Candy[]>([]);
@@ -21,6 +22,8 @@ const Home = () => {
         c.tags?.some(tag => tag.slug === tagParam) ?? false
       )
     : candies;
+  
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const loadCandies = async () => {
@@ -61,7 +64,11 @@ const Home = () => {
       >
         Läs mer
       </Link>
-      <Button variant="dark">Lägg till i varukorgen</Button>
+      <Button 
+        variant="dark"   
+        onClick={() => {console.log("Adding to cart:", c);addToCart(c);}}>
+      Lägg till i varukorgen
+      </Button>
     </div>
   ));
 

@@ -31,6 +31,14 @@ export type CandyWithDescription = Candy & {
   description: string;
 }
 
+export type CartContextType = {
+  cart: Candy[];
+  isOpen: boolean;
+  addToCart: (candy: Candy) => void;
+  toggleCart: () => void;
+};
+
+
 export interface Tag {
   id: number;
   name: string;
