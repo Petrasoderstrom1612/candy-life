@@ -1,10 +1,15 @@
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useCart } from "../context/useCart";
+import { useEffect } from 'react';
 
 const ShoppingCart = () => {
   const { cart, isOpen, toggleCart, addToCart, removeFromCart } = useCart();
 
+  useEffect(() => {
+  console.log("Cart updated:", cart);
+  }, [cart]); 
   if (!isOpen) return null;
+  
 
   return (
     <section className="cart-overlay">
@@ -40,6 +45,7 @@ const ShoppingCart = () => {
       );
     })}
 
+      <p>TOTAL SUMMA: {cart.reduce((sum, item) => sum + (item.quantity * item.candy.price), 0)} SEK</p>
       <button className="go-to-shopping-form-btn">Gå till kassan</button>
     </section>
   );
