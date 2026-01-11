@@ -19,7 +19,7 @@ const TagFilters: React.FC<TagFiltersProps> = ({ availableTags }) => {
   };
 
   return (
-    <div className="tag-filter-buttons">
+    <section className="tag-filter-buttons">
       {availableTags.map(tag => (
         <button
           aria-label={`Filtrera fram ${tag} godistyp.`}
@@ -31,7 +31,7 @@ const TagFilters: React.FC<TagFiltersProps> = ({ availableTags }) => {
         </button>
       ))}
       {tagParam && (<button onClick={() => adjustTagParam(null)} className="candy-type clear-filters">Rensa filter</button>)}
-    </div>
+    </section>
   );
 };
 

@@ -274,14 +274,14 @@ main {
   text-align: center;
 }
 
-.one-candy-detail-div {
+.one-candy-detail-article {
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.one-candy-div-p {
+.one-candy-article-p {
   padding: 1em;
   margin-bottom: 1em;
 }
@@ -362,21 +362,21 @@ main {
     height: 60px;
   }
 
-  .one-candy-detail-div {
+  .one-candy-detail-article {
     background-color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 
-  .one-candy-detail-div-h {
+  .one-candy-detail-article-h {
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 0 1em;
   }
 
-  .one-candy-detail-div-h-img {
+  .one-candy-detail-article-h-img {
     display: flex;
   }
 
@@ -413,7 +413,7 @@ main {
     text-align: center;
   }
 
-  .one-candy-detail-div-h {
+  .one-candy-detail-article-h {
     min-width: 25em;
   }
 

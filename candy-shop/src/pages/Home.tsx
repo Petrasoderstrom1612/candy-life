@@ -52,7 +52,7 @@ const Home = () => {
   if (candies.length === 0) return <h2 className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>;
 
   const candiesCards = possiblyfilteredCandies.map(c => (
-    <div className='candy-box' key={c.id}>
+    <article className='candy-box' key={c.id}>
       <h2>{c.name}</h2>
       <p>{c.price} SEK</p>
       <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
@@ -69,7 +69,7 @@ const Home = () => {
         onClick={() => {console.log("Adding to cart:", c);addToCart(c);}}>
       Lägg till i varukorgen
       </Button>
-    </div>
+    </article>
   ));
 
   // Available tag slugs for TagFilters
@@ -79,11 +79,11 @@ const Home = () => {
     <>
       <h1>Våra godisar är de bästa!</h1>
       <TagFilters availableTags={tagSlugs} />
-      <div className="candies-container">
+      <section className="candies-container">
         {possiblyfilteredCandies.length > 0 ? candiesCards : (
           <p>Inga godisar hittades för vald filter.</p>
         )}
-      </div>
+      </section>
     </>
   );
 };

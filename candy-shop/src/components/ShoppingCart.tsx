@@ -15,7 +15,7 @@ const ShoppingCart = () => {
       {cart.length === 0 && <p>Tom varukorg</p>}
 
       {cart.map((c, index) => (
-        <div key={index} className="shopping-cart-item">
+        <article key={index} className="shopping-cart-item">
           <div className="shopping-item-quantity">
             <p>1x {c.name} </p>
           </div>
@@ -24,7 +24,7 @@ const ShoppingCart = () => {
             <button aria-label={`Add {c.name} to the shopping cart`} className="shopping-cart-icon-btn"><CiCirclePlus /></button>
             <button aria-label={`Remove {c.name} from the shopping cart`} className="shopping-cart-icon-btn"><CiCircleMinus /></button>
           </div>
-        </div>
+        </article>
       ))}
 
       <button className="go-to-shopping-form-btn">Gå till kassan</button>

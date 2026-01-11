@@ -52,15 +52,15 @@ const CandyDetails = () => {
       >
         &larr; <span>Tillbaka till {tag ? tag : "all"} godis</span>
       </Link>
-        <div className="one-candy-detail-div">
-            <div className="one-candy-detail-div-h-img">
-              <div className="one-candy-detail-div-h">
+        <article className="one-candy-detail-article">
+            <div className="one-candy-detail-article-h-img">
+              <div className="one-candy-detail-article-h">
                 <h2 className="one-candy-h2">{candy?.name}</h2>
                 <h3 className="one-candy-h3">${candy?.price} SEK</h3>
               </div>
               <img className="one-candy-img" src={`https://www.bortakvall.se${candy?.images?.large}`} alt={`${candy?.name}`}/>
             </div>
-            <div className="one-candy-div-p">
+            <div className="one-candy-article-p">
               <p>{formatHTML(candy?.description)}</p>
               {candy?.tags?.length ? (<p>{formatTags(candy.tags)}</p>) : null}
               {candy?.tags?.length ? candy.tags.map((t) => (
@@ -76,7 +76,7 @@ const CandyDetails = () => {
               ))
             : null}
             </div>
-        </div>
+        </article>
     </section>
   );
 };
