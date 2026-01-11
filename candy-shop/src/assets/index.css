@@ -181,7 +181,6 @@ html {
   right: 0;
 }
 
-
 .cart-dot::after {/* Remove the old default */
   content: none; /* no dot by default */
 }
@@ -196,10 +195,10 @@ html {
 }
 
 .checkout-header {
-    display: flex;
-    padding: 0;
-    justify-content: space-between;
-    margin-bottom: 1em;;
+  display: flex;
+  padding:0 0 2em 0;
+  justify-content: space-between;
+  height: max-content;
 }
 
 .checkout-header h3 {
@@ -225,7 +224,6 @@ html {
   flex-direction: column;
 }
 
-
 .form-row .form-group {
   flex: 1;
 }
@@ -237,7 +235,6 @@ html {
 }
 
 .order-btn {
-  margin-top: 1rem;
   padding: 0.75rem;
   border-radius: 8px;
   font-weight: bold;
