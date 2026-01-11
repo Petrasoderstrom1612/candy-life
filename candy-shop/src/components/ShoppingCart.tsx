@@ -45,10 +45,10 @@ const ShoppingCart = () => {
             </div>
             <div className="price-buttons">
               <p className="price">{item.candy.price * item.quantity} SEK</p>
-              <button onClick={() => addToCart(item.candy)}>
+              <button className="shopping-cart-icon-btn" onClick={() => addToCart(item.candy)}>
                 <CiCirclePlus />
               </button>
-              <button onClick={() => removeFromCart(item.candy.id)}>
+              <button className="shopping-cart-icon-btn" onClick={() => removeFromCart(item.candy.id)}>
                 <CiCircleMinus />
               </button>
             </div>

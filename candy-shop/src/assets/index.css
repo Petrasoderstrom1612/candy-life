@@ -186,6 +186,67 @@ html {
   content: none; /* no dot by default */
 }
 
+/*checkout cart*/
+.checkout {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 420px;
+  margin: auto;
+}
+
+.checkout-header {
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    margin-bottom: 1em;;
+}
+
+.checkout-header h3 {
+  text-align: center;
+  margin: 0;
+}
+
+.checkout-back-btn,
+.checkout-close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.checkout-form input {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.order-btn {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
 .clear-filters {
   margin-left: -20px;
   height: 34px;
@@ -308,15 +369,20 @@ main {
 
 .shopping-cart-close-btn{
   display: flex;
-  justify-self: flex-end;
+  justify-self: flex-end;  
+  background: none;
+  cursor: pointer;
 }
 
 .shopping-cart-icon-btn {
-  all: unset;/* removes default btn styling */
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding:0;
 }
 
 .shopping-cart-icon-btn svg {
