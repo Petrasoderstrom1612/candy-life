@@ -196,7 +196,7 @@ html {
 
 .checkout-header {
   display: flex;
-  padding:0 0 2em 0;
+  padding:0 0 1em 0;
   justify-content: space-between;
   height: max-content;
 }

@@ -1,7 +1,7 @@
 import type { CheckoutProps } from "../services/Types";
 
 const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
-  console.log(cart);
+  console.log("cart",cart);
 return (
     <section className="cart-overlay checkout">
       <header className="checkout-header">
