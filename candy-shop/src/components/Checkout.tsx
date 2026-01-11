@@ -22,7 +22,6 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
           <input id="lastname" type="text" name="customer_last_name" required />
         </div>
 
-        <div className="form-row">
           <div className="form-group">
             <label htmlFor="postcode">Postcode</label>
             <input id="postcode" type="number" name="customer_postcode" required />
@@ -32,7 +31,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
             <label htmlFor="city">City</label>
             <input id="city" type="text" name="customer_city" required />
           </div>
-        </div>
+
 
         <div className="form-group">
           <label htmlFor="email">Email</label>
