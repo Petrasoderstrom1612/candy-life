@@ -50,14 +50,14 @@ export interface CheckoutProps {
   toggleCart: () => void;
 }
 
-interface OrderItem {
+export interface OrderItem {
   product_id: number;
   qty: number;
   item_price: number;
   item_total: number;
 }
 
-export type Order = {
+export interface OrderRequest {
   customer_first_name: string;
   customer_last_name: string;
   customer_address: string;
@@ -67,6 +67,12 @@ export type Order = {
   customer_phone?: string;
   order_total: number;
   order_items: OrderItem[];
+}
+
+export interface OrderResponse {
+  order_number: string;
+  status: string;
+  message: string; 
 }
 
 export interface Tag {

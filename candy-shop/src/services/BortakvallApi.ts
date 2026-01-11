@@ -1,6 +1,6 @@
 import axios from "axios";
 import { AxiosError } from 'axios';
-import type {Candy, CandyWithDescription} from "./Types"
+import type {Candy, CandyWithDescription, OrderRequest, OrderResponse} from "./Types"
 
 console.log(import.meta.env.VITE_API_BASEURL)
 const BASE_URL = import.meta.env.VITE_API_BASEURL
@@ -33,6 +33,11 @@ const get = async <T>(endpoint: string): Promise<T> => {
     const response = await instance.get<T>(endpoint)
     return response.data
 }
+
+const post = async <T, U>(endpoint: string, body: T): Promise<U> => {
+  const response = await instance.post<U>(endpoint, body);
+  return response.data;
+};
 
 export const getCandies = async (): Promise<Candy[]> => {
     try {
@@ -68,5 +73,16 @@ export const getOneCandy = async (id: number): Promise<CandyWithDescription> => 
       stock_quantity: 0,
       tags: [],
     };
+  }
+};
+
+export const placeOrder = async (userId: number, order: OrderRequest): Promise<OrderResponse | null> => {
+  try {
+    const response = await post<OrderRequest, OrderResponse>(`/users/${userId}/orders`, order);
+    console.log("Order response:", response);
+    return response;
+  } catch (error) {
+    handleError(error);
+    return null; // fallback for failed request
   }
 };

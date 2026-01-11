@@ -1,8 +1,65 @@
-import type { CheckoutProps } from "../services/Types";
+import { useState } from "react";
+import type { CheckoutProps, OrderItem, OrderRequest } from "../services/Types";
+import { placeOrder } from "../services/BortakvallApi"; // import your API function
 
 const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
-  console.log("cart",cart);
-return (
+  const [form, setForm] = useState({
+    customer_first_name: "",
+    customer_last_name: "",
+    customer_address: "",
+    customer_postcode: "",
+    customer_city: "",
+    customer_email: "",
+    customer_phone: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [orderNumber, setOrderNumber] = useState<string | null>(null);
+
+  // Handle form input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+
+    // Map cart to order_items
+    const orderItems: OrderItem[] = cart.map(item => ({
+      product_id: item.candy.id,
+      qty: item.quantity,
+      item_price: item.candy.price,
+      item_total: item.quantity * item.candy.price,
+    }));
+
+    const orderTotal = orderItems.reduce((sum, item) => sum + item.item_total, 0);
+
+    const orderRequest: OrderRequest = {
+      ...form,
+      order_total: orderTotal,
+      order_items: orderItems,
+    };
+
+    try {
+      const response = await placeOrder(98, orderRequest); // replace 98 with actual userId
+      if (response) {
+        setOrderNumber(response.order_number);
+      } else {
+        setError("Något gick fel vid beställningen. Försök igen.");
+      }
+    } catch (err) {
+      console.log(err)
+      setError("Något gick fel vid beställningen. Försök igen.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
     <section className="cart-overlay checkout">
       <header className="checkout-header">
         <button onClick={onBack} aria-label="Back to shopping cart" className="checkout-back-btn">
@@ -15,53 +72,116 @@ return (
 
       <h2>Kassa</h2>
 
-      <form className="checkout-form">
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="firstname">Förnamn</label>
-            <input id="firstname" type="text" name="customer_first_name" required maxLength={255}/>
-          </div>
+      {error && <p className="error">{error}</p>}
+      {orderNumber ? (
+        <p className="success">Tack för din beställning! Ordernummer: {orderNumber}</p>
+      ) : (
+        <form className="checkout-form" onSubmit={handleSubmit}>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="firstname">Förnamn</label>
+              <input
+                id="firstname"
+                type="text"
+                name="customer_first_name"
+                required
+                maxLength={255}
+                value={form.customer_first_name}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="lastname">Efternamn</label>
-            <input id="lastname" type="text" name="customer_last_name" required maxLength={255}/>
-          </div>
-        </fieldset>
+            <div className="form-group">
+              <label htmlFor="lastname">Efternamn</label>
+              <input
+                id="lastname"
+                type="text"
+                name="customer_last_name"
+                required
+                maxLength={255}
+                value={form.customer_last_name}
+                onChange={handleChange}
+              />
+            </div>
+          </fieldset>
 
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="address">Adress</label>
-            <input id="address" type="text" name="customer_address" required maxLength={255}/>
-          </div>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="address">Adress</label>
+              <input
+                id="address"
+                type="text"
+                name="customer_address"
+                required
+                maxLength={255}
+                value={form.customer_address}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="postcode">Postnummer</label>
-            <input id="postcode" type="text" name="customer_postcode" required maxLength={6} pattern="\d{2,6}" title="Postnummer får vara max 6 siffror"/>
-          </div>
+            <div className="form-group">
+              <label htmlFor="postcode">Postnummer</label>
+              <input
+                id="postcode"
+                type="text"
+                name="customer_postcode"
+                required
+                maxLength={6}
+                pattern="\d{2,6}"
+                title="Postnummer får vara max 6 siffror"
+                value={form.customer_postcode}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="city">Stad</label>
-            <input id="city" type="text" name="customer_city" required maxLength={255} />
-          </div>
-        </fieldset>
+            <div className="form-group">
+              <label htmlFor="city">Stad</label>
+              <input
+                id="city"
+                type="text"
+                name="customer_city"
+                required
+                maxLength={255}
+                value={form.customer_city}
+                onChange={handleChange}
+              />
+            </div>
+          </fieldset>
 
-        <fieldset>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input id="email" type="email" name="customer_email" required maxLength={255}/>
-          </div>
+          <fieldset>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="customer_email"
+                required
+                maxLength={255}
+                value={form.customer_email}
+                onChange={handleChange}
+              />
+            </div>
 
-          <div className="form-group">
-            <label htmlFor="phone">Telefonnummer</label>
-            <input id="phone" type="number" name="customer_phone" />
-          </div>
-        </fieldset>
+            <div className="form-group">
+              <label htmlFor="phone">Telefonnummer</label>
+              <input
+                id="phone"
+                type="text"
+                name="customer_phone"
+                maxLength={255}
+                value={form.customer_phone}
+                onChange={handleChange}
+              />
+            </div>
+          </fieldset>
 
-        <button type="submit" className="order-btn">Beställ</button>
-      </form>
+          <button type="submit" className="order-btn" disabled={loading}>
+            {loading ? "Lägger beställning..." : "Beställ"}
+          </button>
+        </form>
+      )}
     </section>
   );
 };
-
 
 export default Checkout;
