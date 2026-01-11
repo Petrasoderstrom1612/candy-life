@@ -31,6 +31,13 @@ export type CandyWithDescription = Candy & {
   description: string;
 }
 
+type CartCandy = Pick<Candy, "id" | "name" | "price" | "on_sale">;
+
+export type CartItem = {
+  candy: CartCandy;
+  quantity: number;
+};
+
 export type CartContextType = {
   cart: Candy[];
   isOpen: boolean;

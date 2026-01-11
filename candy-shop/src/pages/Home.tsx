@@ -32,7 +32,8 @@ const Home = () => {
 
       try {
         const data = await getCandies();
-        setCandies(data);
+        const candiesInStock = data.filter(c => c.stock_status !== "outofstock");
+        setCandies(candiesInStock);
       } catch (err) {
         if (err instanceof Error) {
           setError(err);
