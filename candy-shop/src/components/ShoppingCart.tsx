@@ -5,12 +5,10 @@ const ShoppingCart = () => {
   const { cart, isOpen, toggleCart } = useCart();
 
   if (!isOpen) return null;
-
-  // ✅ Debug: log cart contents whenever overlay opens
   console.log("Shopping cart opened. Current items:", cart);
 
   return (
-    <div className="cart-overlay">
+    <section className="cart-overlay">
       <button onClick={toggleCart} aria-label="Close shopping cart" className="shopping-cart-close-btn">X</button>
       <h3>Varukorg</h3>
 
@@ -18,7 +16,9 @@ const ShoppingCart = () => {
 
       {cart.map((c, index) => (
         <div key={index} className="shopping-cart-item">
-          <div className="shopping-item-quantity">1x {c.name} </div>
+          <div className="shopping-item-quantity">
+            <p>1x {c.name} </p>
+          </div>
           <div className="price-buttons">
             <p className="price">{c.price} SEK </p>
             <button aria-label={`Add {c.name} to the shopping cart`} className="shopping-cart-icon-btn"><CiCirclePlus /></button>
@@ -28,7 +28,7 @@ const ShoppingCart = () => {
       ))}
 
       <button className="go-to-shopping-form-btn">Gå till kassan</button>
-    </div>
+    </section>
   );
 };
 
