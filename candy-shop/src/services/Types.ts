@@ -44,6 +44,12 @@ export type CartContextType = {
   toggleCart: () => void;
 };
 
+export interface CheckoutProps {
+  cart: CartItem[];
+  onBack: () => void;
+  toggleCart: () => void;
+}
+
 interface OrderItem {
   product_id: number;
   qty: number;

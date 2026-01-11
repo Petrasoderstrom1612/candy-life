@@ -221,7 +221,7 @@ footer {
   font-weight: 500;
 }
 
-.go-to-shopping-form-btn { 
+.go-to-shopping-form-btn, .order-btn { 
   background: #ff6b6b;
   border: none;
   color: white;
