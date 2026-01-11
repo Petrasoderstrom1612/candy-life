@@ -28,7 +28,7 @@ const ShoppingCart = () => {
             <p>{item.quantity}x {item.candy.name}</p>
           </div>
           <div className="price-buttons">
-            <p className="price">{item.candy.price} SEK</p>
+            <p className="price">{item.candy.price * item.quantity} SEK</p>
             <button onClick={() => addToCart(item.candy)}>
               <CiCirclePlus />
             </button>
