@@ -9,17 +9,23 @@ type CartProviderProps = {
 const CART_STORAGE_KEY = "shopping-cart";
 
 const CartProvider = ({ children }: CartProviderProps) => {
-  // State holds CartItem[] instead of just Candy[]
 const [cart, setCart] = useState<CartItem[]>(() => {
   try {
     const jsonCart = localStorage.getItem(CART_STORAGE_KEY) ?? "[]";
     const parsed: CartItem[] = JSON.parse(jsonCart);
 
-    // Ensure all items have `candy` and `quantity`
     return parsed.map(item => ({
-      candy: item.candy,       // could add fallback if undefined
-      quantity: item.quantity ?? 1
-    }));
+    candy: item.candy ?? {       // fallback if item.candy is missing
+    id: 0,
+    name: "Unknown Candy",
+    price: 0,
+    on_sale: false,
+    images: [],
+    stock_status: "outofstock",
+    stock_quantity: 0,
+  },
+  quantity: item.quantity ?? 1
+}));
   } catch (error) {
     console.error("Failed to parse cart from local storage", error);
     return [];
@@ -28,26 +34,26 @@ const [cart, setCart] = useState<CartItem[]>(() => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  // Add candy to cart with quantity handling
   const addToCart = (candy: Candy) => {
     setCart(prev => {
-      const existingItem = prev.find(item => item.candy.id === candy.id);
+      const itemInShoppingCart = prev.find(item => item.candy.id === candy.id);
 
-      // If item exists, increment quantity (respect stock)
-      if (existingItem) {
-        if (existingItem.quantity < candy.stock_quantity) {
+      if (itemInShoppingCart) {
+        if (itemInShoppingCart.quantity < candy.stock_quantity) {
+          console.log(`Added 1 more "${candy.name}" to the cart. Total: ${itemInShoppingCart.quantity + 1} of stock ${candy.stock_quantity}`);
           return prev.map(item =>
             item.candy.id === candy.id
               ? { ...item, quantity: item.quantity + 1 }
               : item
           );
         } else {
-          alert(`Du kan inte lägga till fler än ${candy.stock_quantity} av "${candy.name}"`);
+          console.log(`Cannot add "${candy.name}" — reached max stock of ${candy.stock_quantity}`)
+          alert(`Det går tyvärr inte att lägga till fler av "${candy.name}" — max ${candy.stock_quantity} i lager`);
           return prev;
         }
       }
 
-      // If item not in cart, add it with quantity 1
+      console.log(`Added "${candy.name}" to the cart.`);
       return [...prev, { candy, quantity: 1 }];
     });
   };
@@ -66,7 +72,6 @@ const [cart, setCart] = useState<CartItem[]>(() => {
 
   const toggleCart = () => setIsOpen(prev => !prev);
 
-  // Save cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
   }, [cart]);
