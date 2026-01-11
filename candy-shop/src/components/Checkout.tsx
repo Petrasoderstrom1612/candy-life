@@ -13,22 +13,22 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
       <h3>Kassa</h3>
       <form className="checkout-form">
         <div className="form-group">
-          <label htmlFor="firstname">First name</label>
+          <label htmlFor="firstname">Förnamn</label>
           <input id="firstname" type="text" name="customer_first_name" required />
         </div>
 
         <div className="form-group">
-          <label htmlFor="lastname">Last name</label>
+          <label htmlFor="lastname">Efternamn</label>
           <input id="lastname" type="text" name="customer_last_name" required />
         </div>
 
           <div className="form-group">
-            <label htmlFor="postcode">Postcode</label>
+            <label htmlFor="postcode">Postnummer</label>
             <input id="postcode" type="number" name="customer_postcode" required />
           </div>
 
           <div className="form-group">
-            <label htmlFor="city">City</label>
+            <label htmlFor="city">Stad</label>
             <input id="city" type="text" name="customer_city" required />
           </div>
 
@@ -39,7 +39,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="phone">Mobile phone</label>
+          <label htmlFor="phone">Telefonnummer</label>
           <input id="phone" type="number" name="customer_phone" />
         </div>
 
