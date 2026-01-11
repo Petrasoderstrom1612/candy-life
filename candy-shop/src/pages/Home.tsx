@@ -13,17 +13,17 @@ const Home = () => {
   const [candies, setCandies] = useState<Candy[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-
+  
   const [searchParams] = useSearchParams();
   const tagParam = searchParams.get("tag") as TagSlug | null;
-
-  const possiblyfilteredCandies = tagParam
-    ? candies.filter(c => 
-        c.tags?.some(tag => tag.slug === tagParam) ?? false
-      )
-    : candies;
   
-  const { addToCart } = useCart();
+  const possiblyfilteredCandies = tagParam
+  ? candies.filter(c => 
+    c.tags?.some(tag => tag.slug === tagParam) ?? false
+  )
+  : candies;
+  
+  const { cart, addToCart } = useCart();
 
   useEffect(() => {
     const loadCandies = async () => {
@@ -52,7 +52,11 @@ const Home = () => {
   if (error) return <h2 className="main-centered" aria-live="assertive">{error.message}</h2>;
   if (candies.length === 0) return <h2 className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>;
 
-  const candiesCards = possiblyfilteredCandies.map(c => (
+  const candiesCards = possiblyfilteredCandies.map(c => {
+    const itemInCart = cart.find(item => item.candy.id === c.id);
+    const isMaxStockReached = itemInCart ? itemInCart.quantity >= c.stock_quantity : false;
+
+    return (
     <article className='candy-box' key={c.id}>
       <h2>{c.name}</h2>
       <p>{c.price} SEK</p>
@@ -66,12 +70,16 @@ const Home = () => {
         Läs mer
       </Link>
       <Button 
-        variant="dark"   
-        onClick={() => {console.log("Adding to cart:", c);addToCart(c);}}>
-      Lägg till i varukorgen
+        variant="dark"  
+        disabled = {isMaxStockReached} 
+        onClick={() => { console.log("Adding to cart:", c); addToCart(c); }}
+        >
+          {isMaxStockReached ? "Slut i lager" : "Lägg till i varukorgen"}
       </Button>
     </article>
-  ));
+    )
+  }
+);
 
   // Available tag slugs for TagFilters
   const tagSlugs: TagSlug[] = ["gelatinfri", "palmoljefri", "vegansk", "nyhet"];
