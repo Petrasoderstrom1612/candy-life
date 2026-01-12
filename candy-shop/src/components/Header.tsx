@@ -11,9 +11,9 @@ const Header = () => {
 
   return (
     <header className="d-flex justify-content-between align-items-center p-3 border-bottom">
-      <NavLink to="/" className={({ isActive }) => isActive ? "activenav site-logo" : "site-logo"}>#CandyLife</NavLink>
+      <NavLink to="/" className={({ isActive }) => isActive ? "activenav site-logo" : "inactivenav site-logo"}>#CandyLife</NavLink>
       <nav className="d-flex align-items-center gap-3">
-        <NavLink to="/" className={({ isActive }) => (isActive ? "activenav" : undefined)}>Hem</NavLink>
+        <NavLink to="/" className={({ isActive }) => (isActive ? "activenav" : "inactivenav")}>Hem</NavLink>
         <Button
           className={`cart-dot ${cart.length > 0 ? "has-items" : ""}`}
           variant={cart.length > 0 ? "success" : "outline-dark"}

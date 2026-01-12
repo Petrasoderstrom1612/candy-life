@@ -10,8 +10,8 @@
 
 .activenav {
   font-weight: bold !important;
-  text-decoration: underline !important;
-  color: #161616 !important;
+  text-decoration: none !important;
+  color: #161616;
 }
 
 .back-button {
@@ -297,6 +297,12 @@ header {
 h1,
 h2 {
   text-align: center;
+}
+
+.inactivenav{
+  font-weight: bold !important;
+  text-decoration: underline !important;
+  color: #161616;
 }
 
 main {

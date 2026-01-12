@@ -81,7 +81,6 @@ const Home = () => {
   }
 );
 
-  // Available tag slugs for TagFilters
   const tagSlugs: TagSlug[] = ["gelatinfri", "palmoljefri", "vegansk", "nyhet"];
 
   return (
