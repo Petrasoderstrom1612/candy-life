@@ -79,15 +79,16 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
             <p  className="order-number order-actual-nr">{orderNumber}</p>
           </article></>
       ) : (
-        <><header className="checkout-header">
+        <>
+        <header className="checkout-header">
             <button onClick={onBack} aria-label="Back to shopping cart" className="checkout-back-btn">
               ← Tillbaka till varukorgen
             </button>
             <button onClick={toggleCart} aria-label="Close checkout" className="checkout-close-btn">
               ✕
             </button>
-          <h2>Kassa</h2>
           </header><form className="checkout-form" onSubmit={handleSubmit}>
+          <h2>Kassa</h2>
               <fieldset>
                 <div className="form-group">
                   <label htmlFor="firstname">Förnamn</label>
