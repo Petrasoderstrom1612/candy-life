@@ -355,6 +355,25 @@ main {
   max-width: 100%;
 }
 
+/* order summary */
+.order-success {
+  background-color: #e6f7e6; 
+  border-left: 5px solid #52c41a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.order-status {
+  margin: 0;
+  color: #333;
+}
+
+.order-status {
+  color: #0b3d0b; /* slightly darker blue for emphasis */
+}
+
 /*shopping cart*/
 .price{
   padding-right:5px;
