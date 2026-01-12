@@ -3,13 +3,22 @@ import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 import { useCart } from "../context/useCart";
 import { useEffect, useState } from "react";
 
+const CHECKOUT_STEP_KEY = "shopping-cart-checkout";
+
 const ShoppingCart = () => {
   const { cart, isOpen, toggleCart, addToCart, removeFromCart } = useCart();
-  const [isCheckout, setIsCheckout] = useState(false);
+  const [isCheckout, setIsCheckout] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(CHECKOUT_STEP_KEY) === "true";
+  });
 
   useEffect(() => {
     console.log("Cart updated:", cart);
   }, [cart]);
+
+  useEffect(() => {
+  localStorage.setItem(CHECKOUT_STEP_KEY, String(isCheckout));
+  }, [isCheckout]);
 
   if (!isOpen) return null;
 
@@ -21,10 +30,15 @@ const ShoppingCart = () => {
     return <Checkout cart={cart} onBack={() => setIsCheckout(false)} toggleCart={toggleCart}/>;
   }
 
+  const handleToggleCart = () => {
+  setIsCheckout(false);          // ✅ ADDED
+  toggleCart();
+  };
+
   return !isCheckout && (
     <section className="cart-overlay">
       <button
-        onClick={toggleCart}
+        onClick={handleToggleCart}
         aria-label="Close shopping cart"
         className="shopping-cart-close-btn"
       >

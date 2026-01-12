@@ -1,8 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import type { CheckoutProps, OrderItem, OrderRequest } from "../services/Types";
 import { placeOrder } from "../services/BortakvallApi"; // import your API function
 
-const CART_OPEN_KEY = "shopping-cart-open";
 
 const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
   const [form, setForm] = useState({
@@ -17,10 +16,6 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(()=>{
-      if (typeof window === "undefined") return false;
-      return localStorage.getItem(CART_OPEN_KEY) === "true";
-    });
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
   
 
@@ -65,10 +60,6 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    localStorage.setItem(CART_OPEN_KEY, String(isOpen));
-  }, [isOpen]);
   
 
   return (
