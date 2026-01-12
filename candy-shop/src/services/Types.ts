@@ -40,6 +40,7 @@ export type CartContextType = {
   cart: CartItem[];
   isOpen: boolean;
   clearCart: () => void;
+  onCheckoutComplete?: () => void;
   removeFromCart: (candyId: number) => void;
   toggleCart: () => void;
 };
@@ -48,6 +49,7 @@ export interface CheckoutProps {
   cart: CartItem[];
   clearCart: () => void;
   onBack: () => void;
+  onCheckoutComplete?: () => void;
   toggleCart: () => void;
 }
 

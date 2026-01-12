@@ -27,7 +27,13 @@ const ShoppingCart = () => {
   };
 
   if (isCheckout) {
-    return <Checkout cart={cart} clearCart={clearCart} onBack={() => setIsCheckout(false)} toggleCart={toggleCart}/>;
+    return <Checkout 
+      cart={cart} 
+      clearCart={clearCart} 
+      onBack={() => setIsCheckout(false)} 
+      onCheckoutComplete={() => setIsCheckout(false)} 
+      toggleCart={toggleCart}
+    />;
   }
 
   const handleCloseCart = () => {

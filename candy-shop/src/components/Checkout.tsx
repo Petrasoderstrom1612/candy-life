@@ -5,7 +5,7 @@ import { useCart } from "../context/useCart";
 import { useState} from "react";
 
 
-const Checkout = ({ onBack }: CheckoutProps) => {
+const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
   const { cart, clearCart, toggleCart } = useCart();
   const [form, setForm] = useState({
     customer_first_name: "",
@@ -72,6 +72,7 @@ const Checkout = ({ onBack }: CheckoutProps) => {
           onClick={() => {
             clearCart();
             toggleCart();
+            onCheckoutComplete?.();
           }}
           aria-label="Close checkout" 
           className="checkout-close-btn">
