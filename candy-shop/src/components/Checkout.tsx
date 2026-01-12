@@ -19,18 +19,15 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
   const [status, setStatus] = useState<string | null>(null);
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
   
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
 
-    // Map cart to order_items
     const orderItems: OrderItem[] = cart.map(item => ({
       product_id: item.candy.id,
       qty: item.quantity,
@@ -52,32 +49,31 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
         setStatus(response.status);
         setOrderNumber(response.data.id);
       } else {
-        setError("Något gick fel vid beställningen. Försök igen.");
+        setError("Något gick fel vid beställningen! Försök igen eller kontakta vår kundtjänst.");
       }
     } catch (err) {
       console.log(err)
-      setError("Något gick fel vid beställningen. Försök igen.");
+      setError(`Något gick fel vid beställningen! Försök igen eller kontakta vår kundtjänst. Error: ${err}`);
     } finally {
       setLoading(false);
     }
-  };
-  
+  }
 
   return (
     <section className="cart-overlay checkout">
-
-
-      {error && <p className="error">{error}</p>}
-      {status ? (
-        <><button onClick={toggleCart} aria-label="Close checkout" className="checkout-close-btn">
-          ✕
-        </button>
-        <article aria-live="polite" className="order-success" role="status">
-            <p className="order-msg">Tack för din beställning!</p>
-            <p className="order-status">Orderstatus: {status}✅</p>
-            <p  className="order-number">Beställningsnummer:</p>
-            <p  className="order-number order-actual-nr">{orderNumber}</p>
-          </article></>
+      {error && <p aria-live="assertive" className="error">{error}</p>}
+      {status === "success" ? (
+        <>
+          <button onClick={toggleCart} aria-label="Close checkout" className="checkout-close-btn">
+            ✕
+          </button>
+          <article aria-live="polite" className="order-success" role="status">
+              <p className="order-msg">Tack för din beställning!</p>
+              <p className="order-status">Orderstatus: {status}✅</p>
+              <p  className="order-number">Beställningsnummer:</p>
+              <p  className="order-number order-actual-nr">{orderNumber}</p>
+            </article>
+          </>
       ) : (
         <>
         <header className="checkout-header">

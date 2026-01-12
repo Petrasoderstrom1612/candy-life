@@ -224,6 +224,10 @@ html {
   gap: 0.75rem;
 }
 
+.error{
+  color: red;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
