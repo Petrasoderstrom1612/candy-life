@@ -71,6 +71,11 @@ const CartProvider = ({ children }: CartProviderProps) => {
     );
   };
 
+  const clearCart = () => {
+  setCart([]);
+  localStorage.removeItem(CART_STORAGE_KEY);
+  };
+
   const toggleCart = () => setIsOpen(prev => !prev);
 
   useEffect(() => {
@@ -79,7 +84,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }, [cart,isOpen]);
 
   return (
-    <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart }}>
+    <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );

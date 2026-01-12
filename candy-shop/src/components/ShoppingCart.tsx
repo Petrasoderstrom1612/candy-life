@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const CHECKOUT_STEP_KEY = "shopping-cart-checkout";
 
 const ShoppingCart = () => {
-  const { cart, isOpen, toggleCart, addToCart, removeFromCart } = useCart();
+  const { cart, isOpen, toggleCart, addToCart, removeFromCart, clearCart } = useCart();
   const [isCheckout, setIsCheckout] = useState(() => {
     if (typeof window === "undefined") return false; //default nothing in local storage
     return localStorage.getItem(CHECKOUT_STEP_KEY) === "true";
@@ -27,7 +27,7 @@ const ShoppingCart = () => {
   };
 
   if (isCheckout) {
-    return <Checkout cart={cart} onBack={() => setIsCheckout(false)} toggleCart={toggleCart}/>;
+    return <Checkout cart={cart} clearCart={clearCart} onBack={() => setIsCheckout(false)} toggleCart={toggleCart}/>;
   }
 
   const handleCloseCart = () => {

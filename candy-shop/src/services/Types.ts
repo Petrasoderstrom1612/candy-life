@@ -36,15 +36,17 @@ export type CartItem = {
 };
 
 export type CartContextType = {
+  addToCart: (candy: Candy) => void;
   cart: CartItem[];
   isOpen: boolean;
-  addToCart: (candy: Candy) => void;
+  clearCart: () => void;
   removeFromCart: (candyId: number) => void;
   toggleCart: () => void;
 };
 
 export interface CheckoutProps {
   cart: CartItem[];
+  clearCart: () => void;
   onBack: () => void;
   toggleCart: () => void;
 }

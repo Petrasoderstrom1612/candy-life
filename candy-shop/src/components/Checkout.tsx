@@ -1,10 +1,12 @@
-import { useState} from "react";
 import type { CheckoutProps, OrderItem, OrderRequest } from "../services/Types";
 import Loader from '../components/Loader';
-import { placeOrder } from "../services/BortakvallApi"; // import your API function
+import { placeOrder } from "../services/BortakvallApi"; 
+import { useCart } from "../context/useCart";
+import { useState} from "react";
 
 
-const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
+const Checkout = ({ onBack }: CheckoutProps) => {
+  const { cart, clearCart, toggleCart } = useCart();
   const [form, setForm] = useState({
     customer_first_name: "",
     customer_last_name: "",
@@ -14,7 +16,6 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
     customer_email: "",
     customer_phone: "",
   });
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
@@ -67,7 +68,13 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
       {error && <p aria-live="assertive" className="error">{error}</p>}
       {status === "success" ? (
         <>
-          <button onClick={toggleCart} aria-label="Close checkout" className="checkout-close-btn">
+          <button 
+          onClick={() => {
+            clearCart();
+            toggleCart();
+          }}
+          aria-label="Close checkout" 
+          className="checkout-close-btn">
             ✕
           </button>
           <article aria-live="polite" className="order-success" role="status">
