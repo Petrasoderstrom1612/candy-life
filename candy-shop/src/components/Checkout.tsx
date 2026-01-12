@@ -7,7 +7,8 @@ import { useEffect, useState} from "react";
 
 const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
   const { cart, clearCart, toggleCart } = useCart();
-  const [form, setForm] = useState({
+  const [form, setForm] = useState(() => {
+  if (typeof window === "undefined") return {
     customer_first_name: "",
     customer_last_name: "",
     customer_address: "",
@@ -15,6 +16,19 @@ const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
     customer_city: "",
     customer_email: "",
     customer_phone: "",
+  };
+  const savedForm = localStorage.getItem("checkoutForm");
+  return savedForm
+    ? JSON.parse(savedForm)
+    : {
+        customer_first_name: "",
+        customer_last_name: "",
+        customer_address: "",
+        customer_postcode: "",
+        customer_city: "",
+        customer_email: "",
+        customer_phone: "",
+      };
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -22,7 +36,9 @@ const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
   const [orderNumber, setOrderNumber] = useState<string | null>(null);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const updatedForm = ({ ...form, [e.target.name]: e.target.value });
+    setForm(updatedForm);
+    localStorage.setItem("checkoutForm", JSON.stringify(updatedForm));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
