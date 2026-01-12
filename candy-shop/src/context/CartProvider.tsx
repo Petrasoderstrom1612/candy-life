@@ -15,7 +15,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
       const parsed: CartItem[] = JSON.parse(jsonCart);
 
       return parsed.map(item => ({
-      candy: item.candy ?? {       // fallback if item.candy is missing
+      candy: item.candy ?? {  //fallback
       id: 0,
       name: "Unknown Candy",
       price: 0,
