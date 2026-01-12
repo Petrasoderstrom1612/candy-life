@@ -8,7 +8,7 @@ const CHECKOUT_STEP_KEY = "shopping-cart-checkout";
 const ShoppingCart = () => {
   const { cart, isOpen, toggleCart, addToCart, removeFromCart } = useCart();
   const [isCheckout, setIsCheckout] = useState(() => {
-    if (typeof window === "undefined") return false;
+    if (typeof window === "undefined") return false; //default nothing in local storage
     return localStorage.getItem(CHECKOUT_STEP_KEY) === "true";
   });
 
@@ -30,15 +30,15 @@ const ShoppingCart = () => {
     return <Checkout cart={cart} onBack={() => setIsCheckout(false)} toggleCart={toggleCart}/>;
   }
 
-  const handleToggleCart = () => {
-  setIsCheckout(false);          // ✅ ADDED
+  const handleCloseCart = () => {
+  setIsCheckout(false);
   toggleCart();
   };
 
   return !isCheckout && (
     <section className="cart-overlay">
       <button
-        onClick={handleToggleCart}
+        onClick={handleCloseCart}
         aria-label="Close shopping cart"
         className="shopping-cart-close-btn"
       >
