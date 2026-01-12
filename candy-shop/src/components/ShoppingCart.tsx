@@ -71,8 +71,14 @@ const ShoppingCart = () => {
         );
       })}
 
-      <p>TOTAL SUMMA: {cart.reduce((sum, item) => sum + item.quantity * item.candy.price, 0)} SEK</p>
-      <button className="go-to-shopping-form-btn" onClick={handleGoToCheckout}>Gå till kassan</button>
+      {cart.length !== 0 && <p>TOTAL SUMMA: {cart.reduce((sum, item) => sum + item.quantity * item.candy.price, 0)} SEK</p>}
+      <button 
+      aria-label={cart.length === 0 ? "Inga artiklar i varukorgen. Du måste lägg till dem först för att gå till kassan." : "Gå till kassan"}
+      className={`go-to-shopping-form-btn ${cart.length === 0 ? "sr-only" : ""}`} 
+      disabled={cart.length === 0} 
+      onClick={handleGoToCheckout}>
+        {cart.length === 0 ? <span className="sr-only">Inga artiklar i varukorgen</span> : "Gå till kassan"}
+      </button>
     </section>
   )
 };
