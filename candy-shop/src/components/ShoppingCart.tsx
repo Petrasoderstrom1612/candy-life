@@ -10,6 +10,7 @@ const ShoppingCart = () => {
   useEffect(() => {
     console.log("Cart updated:", cart);
   }, [cart]);
+
   if (!isOpen) return null;
 
   const handleGoToCheckout = () => {
@@ -34,7 +35,7 @@ const ShoppingCart = () => {
       {cart.length === 0 && <p>Tom varukorg</p>}
 
       {cart.map((item, index) => {
-        if (!item?.candy) return null; // skip invalid items
+        if (!item?.candy) return null; 
 
         return (
           <article key={index} className="shopping-cart-item">
@@ -56,14 +57,8 @@ const ShoppingCart = () => {
         );
       })}
 
-      <p>
-        TOTAL SUMMA:{" "}
-        {cart.reduce((sum, item) => sum + item.quantity * item.candy.price, 0)}{" "}
-        SEK
-      </p>
-      <button className="go-to-shopping-form-btn" onClick={handleGoToCheckout}>
-        Gå till kassan
-      </button>
+      <p>TOTAL SUMMA: {cart.reduce((sum, item) => sum + item.quantity * item.candy.price, 0)} SEK</p>
+      <button className="go-to-shopping-form-btn" onClick={handleGoToCheckout}>Gå till kassan</button>
     </section>
   )
 };

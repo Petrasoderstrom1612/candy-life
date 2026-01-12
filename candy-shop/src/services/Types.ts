@@ -5,7 +5,7 @@ export interface CandyLocation {
   state: {
     id?: number;
     tagParam?: string;
-    queryString?: string; // <-- add this
+    queryString?: string;
   } | null;
   key: string;
 }
@@ -14,7 +14,6 @@ export interface CandyImage {
   thumbnail: string;
   large: string;
 }
-
 
 export interface Candy {
   id: number;
