@@ -47,7 +47,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
     };
 
     try {
-      const response = await placeOrder(98, orderRequest); // replace 98 with actual userId
+      const response = await placeOrder(98, orderRequest);
       if (response) {
         setOrderNumber(response.order_number);
       } else {
