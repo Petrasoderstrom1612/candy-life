@@ -2,7 +2,7 @@ import type { CheckoutProps, OrderItem, OrderRequest } from "../services/Types";
 import Loader from '../components/Loader';
 import { placeOrder } from "../services/BortakvallApi"; 
 import { useCart } from "../context/useCart";
-import { useState} from "react";
+import { useEffect, useState} from "react";
 
 
 const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
@@ -50,6 +50,9 @@ const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
       if (response) {
         setStatus(response.status);
         setOrderNumber(response.data.id);
+
+        localStorage.setItem("checkoutStatus", response.status);
+        localStorage.setItem("checkoutOrderNumber", String(response.data.id));
       } else {
         setError("Något gick fel vid beställningen! Försök igen eller kontakta vår kundtjänst.");
       }
@@ -60,6 +63,16 @@ const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
       setLoading(false);
     }
   }
+
+  useEffect(() => {
+  const savedStatus = localStorage.getItem("checkoutStatus");
+  const savedOrderNumber = localStorage.getItem("checkoutOrderNumber");
+
+  if (savedStatus && savedOrderNumber) {
+    setStatus(savedStatus);
+    setOrderNumber(savedOrderNumber);
+  }
+  }, []);
 
   if(loading) { return <Loader />;}
 
@@ -73,6 +86,8 @@ const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
             clearCart();
             toggleCart();
             onCheckoutComplete?.();
+            localStorage.removeItem("checkoutStatus");
+            localStorage.removeItem("checkoutOrderNumber");
           }}
           aria-label="Close checkout" 
           className="checkout-close-btn">

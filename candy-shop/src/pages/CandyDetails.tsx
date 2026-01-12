@@ -58,7 +58,13 @@ const CandyDetails = () => {
                 <h2 className="one-candy-h2">{candy?.name}</h2>
                 <h3 className="one-candy-h3">${candy?.price} SEK</h3>
               </div>
-              <img className="one-candy-img" src={`https://www.bortakvall.se${candy?.images?.large}`} alt={`${candy?.name}`}/>
+              {candy?.images?.large && (
+                <img
+                  className="one-candy-img"
+                  src={`https://www.bortakvall.se${candy.images.large}`}
+                  alt={candy.name}
+                />
+              )}
             </div>
             <div className="one-candy-article-p">
               <p>{formatHTML(candy?.description)}</p>
