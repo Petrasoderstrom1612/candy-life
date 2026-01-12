@@ -7,6 +7,7 @@ type CartProviderProps = {
 };
 
 const CART_STORAGE_KEY = "shopping-cart";
+const CART_OPEN_KEY = "shopping-cart-open";
 
 const CartProvider = ({ children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartItem[]>(() => {
@@ -31,7 +32,10 @@ const CartProvider = ({ children }: CartProviderProps) => {
       return [];
     }
   });
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(()=>{
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(CART_OPEN_KEY) === "true";
+  });
 
   const addToCart = (candy: Candy) => {
     setCart(prev => {
@@ -71,7 +75,8 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
   useEffect(() => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem(CART_OPEN_KEY, String(isOpen));
+  }, [cart,isOpen]);
 
   return (
     <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart }}>
