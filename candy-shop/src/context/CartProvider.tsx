@@ -9,29 +9,28 @@ type CartProviderProps = {
 const CART_STORAGE_KEY = "shopping-cart";
 
 const CartProvider = ({ children }: CartProviderProps) => {
-const [cart, setCart] = useState<CartItem[]>(() => {
-  try {
-    const jsonCart = localStorage.getItem(CART_STORAGE_KEY) ?? "[]";
-    const parsed: CartItem[] = JSON.parse(jsonCart);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    try {
+      const jsonCart = localStorage.getItem(CART_STORAGE_KEY) ?? "[]";
+      const parsed: CartItem[] = JSON.parse(jsonCart);
 
-    return parsed.map(item => ({
-    candy: item.candy ?? {       // fallback if item.candy is missing
-    id: 0,
-    name: "Unknown Candy",
-    price: 0,
-    on_sale: false,
-    images: [],
-    stock_status: "outofstock",
-    stock_quantity: 0,
-  },
-  quantity: item.quantity ?? 1
-}));
-  } catch (error) {
-    console.error("Failed to parse cart from local storage", error);
-    return [];
-  }
-});
-
+      return parsed.map(item => ({
+      candy: item.candy ?? {       // fallback if item.candy is missing
+      id: 0,
+      name: "Unknown Candy",
+      price: 0,
+      on_sale: false,
+      images: [],
+      stock_status: "outofstock",
+      stock_quantity: 0,
+    },
+    quantity: item.quantity ?? 1
+  }));
+    } catch (error) {
+      console.error("Failed to parse cart from local storage", error);
+      return [];
+    }
+  });
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const addToCart = (candy: Candy) => {
@@ -60,13 +59,11 @@ const [cart, setCart] = useState<CartItem[]>(() => {
 
   const removeFromCart = (candyId: number) => {
     setCart(prev =>
-      prev
-        .map(item =>
+      prev.map(item =>
           item.candy.id === candyId
             ? { ...item, quantity: item.quantity - 1 }
             : item
-        )
-        .filter(item => item.quantity > 0)
+        ).filter(item => item.quantity > 0)
     );
   };
 
