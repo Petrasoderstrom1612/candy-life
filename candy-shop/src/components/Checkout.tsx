@@ -1,5 +1,6 @@
 import { useState} from "react";
 import type { CheckoutProps, OrderItem, OrderRequest } from "../services/Types";
+import Loader from '../components/Loader';
 import { placeOrder } from "../services/BortakvallApi"; // import your API function
 
 
@@ -53,11 +54,13 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
       }
     } catch (err) {
       console.log(err)
-      setError(`Något gick fel vid beställningen! Försök igen eller kontakta vår kundtjänst. Error: ${err}`);
+      setError(`Det uppstod ett tekniskt problem vid beställningen. Försök igen om några minuter eller kontakta kundtjänst.`);
     } finally {
       setLoading(false);
     }
   }
+
+  if(loading) { return <Loader />;}
 
   return (
     <section className="cart-overlay checkout">
@@ -176,9 +179,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
                 </div>
               </fieldset>
 
-              <button type="submit" className="order-btn" disabled={loading}>
-                {loading ? "Lägger beställning..." : "Beställ"}
-              </button>
+              <button type="submit" className="order-btn">Beställ</button>
             </form></>
       )}
     </section>
