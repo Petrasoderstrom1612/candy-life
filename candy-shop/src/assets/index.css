@@ -206,10 +206,15 @@ html {
   margin: 0;
 }
 
-.checkout-back-btn,
-.checkout-close-btn {
+.checkout-back-btn{
   background: none;
   border: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.checkout-close-btn {
+  background: none;
   cursor: pointer;
 }
 
