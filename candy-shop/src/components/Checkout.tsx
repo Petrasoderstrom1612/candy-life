@@ -135,7 +135,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="city">Stad</label>
+              <label htmlFor="city">Ort</label>
               <input
                 id="city"
                 type="text"
