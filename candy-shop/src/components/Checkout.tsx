@@ -76,7 +76,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
             <p className="order-msg">Tack för din beställning!</p>
             <p className="order-status">Orderstatus: {status}✅</p>
             <p  className="order-number">Beställningsnummer:</p>
-            <p  className="order-number-the-actual-nr">{orderNumber}</p>
+            <p  className="order-number order-actual-nr">{orderNumber}</p>
           </article></>
       ) : (
         <><header className="checkout-header">

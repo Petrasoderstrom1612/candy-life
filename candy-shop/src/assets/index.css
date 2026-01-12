@@ -360,19 +360,20 @@ main {
   font-weight: 600;
 }
 
+
+.order-actual-nr{
+  margin: 0.5rem 0 0 0;
+  font-size: 1.125rem;
+  color: #145214; 
+  border: 1px solid green;
+  width: 165px;
+}
+
 .order-number {
   margin: 0.5rem 0 0 0;
   font-size: 1.125rem;
   color: #145214; 
 }
-
-.order-number-the-actual-nr{
-  margin: 0.5rem 0 0 0;
-  font-size: 1.125rem;
-  color: #145214; 
-  border: 1px solid green;
-}
-
 .order-success {
   background-color: #e6f7e6; 
   border-left: 5px solid #52c41a;
