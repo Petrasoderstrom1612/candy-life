@@ -69,7 +69,9 @@ export interface OrderRequest {
 }
 
 export interface OrderResponse {
-  order_number: string;
+  data: {
+    id: string;
+  }
   status: string;
   message: string; 
 }

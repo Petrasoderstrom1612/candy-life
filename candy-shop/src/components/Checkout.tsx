@@ -17,7 +17,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [status, setStatus] = useState<string | null>(null);
-  // const [orderNumber, setOrderNumber] = useState<string | null>(null);
+  const [orderNumber, setOrderNumber] = useState<string | null>(null);
   
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +50,7 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
       const response = await placeOrder(98, orderRequest);
       if (response) {
         setStatus(response.status);
-        console.log("status", status)
+        setOrderNumber(response.data.id);
       } else {
         setError("Något gick fel vid beställningen. Försök igen.");
       }
@@ -71,19 +71,22 @@ const Checkout = ({ cart, onBack, toggleCart }: CheckoutProps) => {
       {status ? (
         <><button onClick={toggleCart} aria-label="Close checkout" className="checkout-close-btn">
           ✕
-        </button><article className="order-success">
-            <p>Tack för din beställning!</p>
-            <p className="order-status">Orderstatus: {status}</p>
+        </button>
+        <article aria-live="polite" className="order-success" role="status">
+            <p className="order-msg">Tack för din beställning!</p>
+            <p className="order-status">Orderstatus: {status}✅</p>
+            <p  className="order-number">Beställningsnummer:</p>
+            <p  className="order-number-the-actual-nr">{orderNumber}</p>
           </article></>
       ) : (
         <><header className="checkout-header">
-        <h2>Kassa</h2>
             <button onClick={onBack} aria-label="Back to shopping cart" className="checkout-back-btn">
               ← Tillbaka till varukorgen
             </button>
             <button onClick={toggleCart} aria-label="Close checkout" className="checkout-close-btn">
               ✕
             </button>
+          <h2>Kassa</h2>
           </header><form className="checkout-form" onSubmit={handleSubmit}>
               <fieldset>
                 <div className="form-group">

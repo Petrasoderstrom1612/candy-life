@@ -356,6 +356,23 @@ main {
 }
 
 /* order summary */
+.order-msg{
+  font-weight: 600;
+}
+
+.order-number {
+  margin: 0.5rem 0 0 0;
+  font-size: 1.125rem;
+  color: #145214; 
+}
+
+.order-number-the-actual-nr{
+  margin: 0.5rem 0 0 0;
+  font-size: 1.125rem;
+  color: #145214; 
+  border: 1px solid green;
+}
+
 .order-success {
   background-color: #e6f7e6; 
   border-left: 5px solid #52c41a;
@@ -363,6 +380,7 @@ main {
   border-radius: 8px;
   margin: 1rem 0;
   box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  text-align: center;
 }
 
 .order-status {
