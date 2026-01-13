@@ -9,10 +9,10 @@ const Layout = () => {
     <>
     <CartProvider>
       <Header />
-      <ShoppingCart />
       <main className="bg-light">
       <Outlet />
       </main>
+      <ShoppingCart />
     </CartProvider>
     <Footer />
     </>

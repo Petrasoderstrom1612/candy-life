@@ -41,14 +41,12 @@ const post = async <T, U>(endpoint: string, body: T): Promise<U> => {
 
 export const getCandies = async (): Promise<Candy[]> => {
     try {
-        // Use the generic GET helper
         const response = await get<{status: string; data: Candy[]}>('/products')
-
         console.log("data", response.data)
         return response.data || []
     } catch (error) {
         handleError(error)
-        return []  // fallback empty array
+        return []  // fallback
     }
 }
 
@@ -58,11 +56,10 @@ export const getOneCandy = async (id: number): Promise<CandyWithDescription> => 
       `/products/${id}`
     );
     console.log("data", response.data);
-    return response.data; // single object now
+    return response.data;
   } catch (error) {
     handleError(error);
-    // fallback single object
-    return {
+    return { // fallback single obj
       id: 0,
       name: "",
       description: "",

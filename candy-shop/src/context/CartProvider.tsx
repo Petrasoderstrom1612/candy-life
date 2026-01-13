@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
 import type { Candy, CartItem } from "../services/Types";
 import { CartContext } from "./CartContext";
+import { useState, useEffect } from "react";
 
 type CartProviderProps = {
   children: React.ReactNode;

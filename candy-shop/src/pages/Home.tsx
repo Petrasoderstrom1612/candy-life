@@ -11,8 +11,8 @@ import { useState, useEffect } from 'react';
 
 const Home = () => {
   const [candies, setCandies] = useState<Candy[]>([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
+  const [loading, setLoading] = useState(false);
   
   const [searchParams] = useSearchParams();
   const tagParam = searchParams.get("tag") as TagSlug | null;
@@ -55,34 +55,31 @@ const Home = () => {
   const candiesCards = possiblyfilteredCandies.map(c => {
     const itemInCart = cart.find(item => item.candy.id === c.id);
     const isMaxStockReached = itemInCart ? itemInCart.quantity >= c.stock_quantity : false;
-
     return (
-    <article className='candy-box' key={c.id}>
-      <h2>{c.name}</h2>
-      <p>{c.price} SEK</p>
-      <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
-      <Link 
-        aria-label={`Visa detaljer för ${c.name}, pris: ${c.price} SEK`} 
-        className="details-link"
-        to={c.name.toLowerCase().replace(/\s+/g, "-")} 
-        state={{ id: c.id, tagParam }}
-      >
-        Läs mer
-      </Link>
-      <Button 
-        variant="dark"  
-        disabled = {isMaxStockReached} 
-        onClick={() => { console.log("Adding to cart:", c); addToCart(c); }}
+      <article className='candy-box' key={c.id}>
+        <h2>{c.name}</h2>
+        <p>{c.price} SEK</p>
+        <img alt={c.name} src={`https://www.bortakvall.se${c.images.thumbnail}`} />
+        <Link 
+          aria-label={`Visa detaljer för ${c.name}, pris: ${c.price} SEK`} 
+          className="details-link"
+          to={c.name.toLowerCase().replace(/\s+/g, "-")} 
+          state={{ id: c.id, tagParam }}
         >
-          {isMaxStockReached ? "Slut i lager" : "Lägg till i varukorgen"}
-      </Button>
-    </article>
+          Läs mer
+        </Link>
+        <Button 
+          variant="dark"  
+          disabled = {isMaxStockReached} 
+          onClick={() => { console.log("Adding to cart:", c); addToCart(c); }}
+          >
+            {isMaxStockReached ? "Slut i lager" : "Lägg till i varukorgen"}
+        </Button>
+      </article>
     )
-  }
-);
+  });
 
   const tagSlugs: TagSlug[] = ["gelatinfri", "palmoljefri", "vegansk", "nyhet"];
-
   return (
     <>
       <h1>Våra godisar är de bästa!</h1>
