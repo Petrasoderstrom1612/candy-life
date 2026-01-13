@@ -69,9 +69,11 @@ const Home = () => {
           Läs mer
         </Link>
         <Button 
-          variant="dark"  
+          aria-disabled={isMaxStockReached}
+          aria-label={ isMaxStockReached? "Slut i lager. Produkten kan inte läggas i varukorgen.": "Lägg till produkten i varukorgen"}
           disabled = {isMaxStockReached} 
           onClick={() => { console.log("Adding to cart:", c); addToCart(c); }}
+          variant="dark"  
           >
             {isMaxStockReached ? "Slut i lager" : "Lägg till i varukorgen"}
         </Button>
