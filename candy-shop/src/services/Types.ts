@@ -45,6 +45,7 @@ export type CartContextType = {
   toggleCart: () => void;
 };
 
+
 export interface CheckoutProps {
   cart: CartItem[];
   clearCart: () => void;
@@ -71,6 +72,10 @@ export interface OrderRequest {
   order_total: number;
   order_items: OrderItem[];
 }
+
+export type CheckoutForm = Omit<OrderRequest,"order_total" | "order_items"> & {
+  customer_phone: string; 
+};
 
 export interface OrderResponse {
   data: {
