@@ -73,15 +73,9 @@ export const getOneCandy = async (id: number): Promise<CandyWithDescription> => 
   }
 };
 
-export const placeOrder = async (
-  userId: number,
-  order: OrderRequest
-): Promise<OrderResponse | null> => {
+export const placeOrder = async (userId: number, order: OrderRequest): Promise<OrderResponse | null> => {
   try {
-    const response = await post<OrderRequest, OrderResponse>(
-      `/users/${userId}/orders`,
-      order
-    );
+    const response = await post<OrderRequest, OrderResponse>(`/users/${userId}/orders`, order);
     return response;
   } catch (error) {
     handleError(error);
