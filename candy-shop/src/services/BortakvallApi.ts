@@ -1,24 +1,24 @@
 import axios from "axios";
-import { AxiosError } from 'axios';
+// import { AxiosError } from 'axios';
 import type {Candy, CandyWithDescription, OrderRequest, OrderResponse} from "./Types"
 
 console.log(import.meta.env.VITE_API_BASEURL)
 const BASE_URL = import.meta.env.VITE_API_BASEURL
 console.log(BASE_URL)
 
-const handleError = (error: unknown) => {
-    if (error instanceof AxiosError){
-        alert("Something went wrong" + error.message)
-        console.log(error)
-        throw Error(`error message: ${error.message}`)
-    }  else if (error instanceof Error){
-        alert("something unexpexted happened")
-        console.log("something unexpexted happened")
-    } else {
-		alert("This should never happen.")
-        console.log("This should never happen.")
-	}
-}
+// const handleError = (error: unknown) => {
+//     if (error instanceof AxiosError){
+//         alert("Something went wrong" + error.message)
+//         console.log(error)
+//         throw Error(`error message: ${error.message}`)
+//     }  else if (error instanceof Error){
+//         alert("something unexpexted happened")
+//         console.log("something unexpexted happened")
+//     } else {
+// 		alert("This should never happen.")
+//         console.log("This should never happen.")
+// 	}
+// }
 
 const instance = axios.create({
     baseURL: BASE_URL,
@@ -40,15 +40,17 @@ const post = async <T, U>(endpoint: string, body: T): Promise<U> => {
 };
 
 export const getCandies = async (): Promise<Candy[]> => {
-    try {
-        const response = await get<{status: string; data: Candy[]}>('/products')
-        console.log("data", response.data)
-        return response.data || []
-    } catch (error) {
-        handleError(error)
-        return []  // fallback
-    }
-}
+	try {
+		const response = await get<{ status: string; data: Candy[] }>('/products');
+		return response.data || []; //|| [] is only evaluated after a successful response
+	} catch (error) {
+		// Logga det tekniska felet för felsökning
+		console.error("API Error fetching candies:", error);
+
+		// Kasta felet vidare så att komponenten kan hantera det
+		throw new Error("Kunde inte hämta produkter från servern.");
+	}
+};
 
 export const getOneCandy = async (id: number): Promise<CandyWithDescription> => {
   try {
@@ -56,29 +58,25 @@ export const getOneCandy = async (id: number): Promise<CandyWithDescription> => 
       `/products/${id}`
     );
     console.log("data", response.data);
-    return response.data;
+    return response.data || {};
   } catch (error) {
-    handleError(error);
-    return { // fallback single obj
-      id: 0,
-      name: "",
-      description: "",
-      price: 0,
-      on_sale: false,
-      images: { thumbnail: "", large: "" },
-      stock_status: "outofstock",
-      stock_quantity: 0,
-      tags: [],
-    };
+		// Logga det tekniska felet för felsökning
+		console.error("API Error fetching candy:", error);
+
+		// Kasta felet vidare så att komponenten kan hantera det
+		throw new Error("Kunde inte hämta produkten från servern.");
   }
 };
 
 export const placeOrder = async (userId: number, order: OrderRequest): Promise<OrderResponse | null> => {
   try {
     const response = await post<OrderRequest, OrderResponse>(`/users/${userId}/orders`, order);
-    return response;
+    return response || null;
   } catch (error) {
-    handleError(error);
-    return null;
+    		// Logga det tekniska felet för felsökning
+		console.error("API Error placing order:", error);
+
+		// Kasta felet vidare så att komponenten kan hantera det
+		throw new Error("Kunde inte lägga beställningen.");
   }
 };
