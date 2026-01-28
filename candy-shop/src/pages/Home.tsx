@@ -35,7 +35,7 @@ const Home = () => {
         const candiesInStock = data.filter(c => c.stock_status !== "outofstock");
         setCandies(candiesInStock);
       } catch {
-        setError("Kunde inte ladda godiset. Prova att ladda om sidan.");
+        setError("Kunde inte ladda godisar. Prova att ladda om sidan.");
       } finally {
         setLoading(false);
       }

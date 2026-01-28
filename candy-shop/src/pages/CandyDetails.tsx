@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 
 const CandyDetails = () => {
   const [candy, setCandy] = useState<CandyWithDescription | null>(null);
-  const [error, setError] = useState<Error | null>(null)
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false)
   const location = useLocation() as CandyLocation;
   const id = location.state?.id ?? null;
@@ -25,12 +25,8 @@ const CandyDetails = () => {
         const data = await getOneCandy(id);
         setCandy(data);
         console.log("name", data.name);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err)
-        } else {
-          setError(new Error("An unknown error occurred"))
-        }
+      } catch {
+        setError("Kunde inte ladda godiset. Prova att ladda om sidan.");
       } finally {
           setLoading(false)
         } 
@@ -40,7 +36,7 @@ const CandyDetails = () => {
   }, [id]);
 
   if(loading) { return <Loader />;}
-  if(error){ return <h2 className="main-centered" aria-live="assertive">{error.message}</h2> }
+  if(error){ return <h2 className="main-centered" aria-live="assertive">{error}</h2> }
 
   return (
     <section className="one-candy-section">
