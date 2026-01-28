@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 
 const Home = () => {
   const [candies, setCandies] = useState<Candy[]>([]);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   
   const [searchParams] = useSearchParams();
@@ -34,12 +34,8 @@ const Home = () => {
         const data = await getCandies();
         const candiesInStock = data.filter(c => c.stock_status !== "outofstock");
         setCandies(candiesInStock);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err);
-        } else {
-          setError(new Error("An unknown error occurred"));
-        }
+      } catch {
+        setError("Kunde inte ladda godiset. Prova att ladda om sidan.");
       } finally {
         setLoading(false);
       }
@@ -49,7 +45,7 @@ const Home = () => {
   }, []);
 
   if (loading) return <Loader />;
-  if (error) return <h2 className="main-centered" aria-live="assertive">{error.message}</h2>;
+  if (error) return <h2 className="main-centered" aria-live="assertive">{error}</h2>;
   if (candies.length === 0) return <h2 className="main-centered" aria-live="polite">Inga godisar i lager just nu 🍬</h2>;
 
   const candiesCards = possiblyfilteredCandies.map(c => {
