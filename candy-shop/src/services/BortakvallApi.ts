@@ -1,6 +1,6 @@
 import axios from "axios";
 // import { AxiosError } from 'axios';
-import type {Candy, CandyWithDescription, OrderRequest, OrderResponse} from "./Types"
+import type {ApiResponse, Candy, CandyWithDescription, OrderRequest, OrderResponse} from "./Types"
 
 console.log(import.meta.env.VITE_API_BASEURL)
 const BASE_URL = import.meta.env.VITE_API_BASEURL
@@ -34,14 +34,14 @@ const get = async <T>(endpoint: string): Promise<T> => {
     return response.data
 }
 
-const post = async <T, U>(endpoint: string, body: T): Promise<U> => {
-  const response = await instance.post<U>(endpoint, body);
+export const post = async <TBody, TResponse>(endpoint: string, body: TBody): Promise<TResponse> => { //TBody → the type of the data you send
+  const response = await instance.post<TResponse>(endpoint, body);
   return response.data;
 };
 
 export const getCandies = async (): Promise<Candy[]> => {
 	try {
-		const response = await get<{ status: string; data: Candy[] }>('/products');
+		const response = await get<ApiResponse<Candy[]>>('/products');
 		return response.data || []; //|| [] is only evaluated after a successful response
 	} catch (error) {
 		// Logga det tekniska felet för felsökning
@@ -54,7 +54,7 @@ export const getCandies = async (): Promise<Candy[]> => {
 
 export const getOneCandy = async (id: number): Promise<CandyWithDescription> => {
   try {
-    const response = await get<{ status: string; data: CandyWithDescription }>(
+    const response = await get<ApiResponse<CandyWithDescription>>(
       `/products/${id}`
     );
     console.log("data", response.data);

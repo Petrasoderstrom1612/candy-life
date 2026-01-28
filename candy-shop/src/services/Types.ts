@@ -1,3 +1,10 @@
+export type ApiStatus = "success" | "error" | "fail";
+
+export interface ApiResponse<T> {
+  status: ApiStatus;
+  data: T;
+}
+
 export interface CandyLocation {
   pathname: string;
   search: string;
