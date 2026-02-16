@@ -28,8 +28,8 @@ const CandyDetails = () => {
       } catch {
         setError("Kunde inte ladda godiset. Prova att ladda om sidan.");
       } finally {
-          setLoading(false)
-        } 
+        setLoading(false)
+      } 
     };
 
     loadCandy();
