@@ -18,7 +18,7 @@ export const handleApiError  = async <T>(
 
     // 2️⃣ Translate known HTTP errors
     if (status === 404) {
-      throw new ApiError("Not found.", 404);
+      throw new ApiError("Not found.", 404); //throw new kastar felet vidare
     }
 
     if (status === 500) {
