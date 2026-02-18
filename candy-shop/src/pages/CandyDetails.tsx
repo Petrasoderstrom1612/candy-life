@@ -1,3 +1,4 @@
+import { ApiError, TooManyRequestsError } from '../services/ApiError';
 import type { CandyLocation, CandyWithDescription} from "../services/Types";
 import { formatHTML } from "../utils/formatHTML";
 import { formatTags } from "../utils/formatTags";
@@ -25,8 +26,14 @@ const CandyDetails = () => {
         const data = await getOneCandy(id);
         setCandy(data);
         console.log("name", data.name);
-      } catch {
-        setError("Kunde inte ladda godiset. Prova att ladda om sidan.");
+      } catch (err) {
+        if (err instanceof TooManyRequestsError) {
+          setError("För många anrop just nu, försök om en stund.");
+        } else if (err instanceof ApiError) {
+          setError(err.message);
+        } else {
+          setError("Kunde inte ladda godisar. Prova att ladda om sidan.");
+        }
       } finally {
         setLoading(false)
       } 

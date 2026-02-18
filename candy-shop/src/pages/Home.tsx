@@ -1,4 +1,5 @@
 import '../assets/app.scss';
+import { ApiError, TooManyRequestsError } from '../services/ApiError';
 import Button from 'react-bootstrap/Button';
 import type { Candy, TagSlug } from '../services/Types';
 import { getCandies } from '../services/BortakvallApi';
@@ -34,8 +35,14 @@ const Home = () => {
         const data = await getCandies();
         const candiesInStock = data.filter(c => c.stock_status !== "outofstock");
         setCandies(candiesInStock);
-      } catch {
-        setError("Kunde inte ladda godisar. Prova att ladda om sidan.");
+      } catch (err) {
+        if (err instanceof TooManyRequestsError) {
+          setError("För många anrop just nu, försök om en stund.");
+        } else if (err instanceof ApiError) {
+          setError(err.message);
+        } else {
+          setError("Kunde inte ladda godisar. Prova att ladda om sidan.");
+        }
       } finally {
         setLoading(false);
       }

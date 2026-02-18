@@ -1,24 +1,10 @@
 import axios from "axios";
-// import { AxiosError } from 'axios';
 import type {ApiResponse, Candy, CandyWithDescription, OrderRequest, OrderResponse} from "./Types"
+import { handleApiError } from "./handleApiError";
 
 console.log(import.meta.env.VITE_API_BASEURL)
 const BASE_URL = import.meta.env.VITE_API_BASEURL
 console.log(BASE_URL)
-
-// const handleError = (error: unknown) => {
-//     if (error instanceof AxiosError){
-//         alert("Something went wrong" + error.message)
-//         console.log(error)
-//         throw Error(`error message: ${error.message}`)
-//     }  else if (error instanceof Error){
-//         alert("something unexpexted happened")
-//         console.log("something unexpexted happened")
-//     } else {
-// 		alert("This should never happen.")
-//         console.log("This should never happen.")
-// 	}
-// }
 
 const instance = axios.create({
     baseURL: BASE_URL,
@@ -30,53 +16,35 @@ const instance = axios.create({
 })
 
 const get = async <T>(endpoint: string): Promise<T> => {
+  try{
     const response = await instance.get<T>(endpoint)
     return response.data
+  } catch (error){
+    return handleApiError<T>(error, () => get<T>(endpoint))
+  }
 }
 
 export const post = async <TBody, TResponse>(endpoint: string, body: TBody): Promise<TResponse> => { //TBody → the type of the data you send
-  const response = await instance.post<TResponse>(endpoint, body);
-  return response.data;
+  try{
+    const response = await instance.post<TResponse>(endpoint, body);
+    return response.data;
+  } catch (error){
+    return handleApiError<TResponse>(error, ()=> post<TBody, TResponse>(endpoint, body))
+  }
 };
 
 export const getCandies = async (): Promise<Candy[]> => {
-	try {
-		const response = await get<ApiResponse<Candy[]>>('/products');
-		return response.data || []; //|| [] is only evaluated after a successful response
-	} catch (error) {
-		// Logga det tekniska felet för felsökning
-		console.error("API Error fetching candies:", error);
-
-		// Kasta felet vidare så att komponenten kan hantera det
-		throw new Error("Kunde inte hämta produkter från servern.");
-	}
+  const response = await get<ApiResponse<Candy[]>>('/products');
+  return response.data || []; //|| [] is only evaluated after a successful response so you will not return empty [] if something is wrong (this part goes to catch get)
 };
 
 export const getOneCandy = async (id: number): Promise<CandyWithDescription> => {
-  try {
-    const response = await get<ApiResponse<CandyWithDescription>>(
-      `/products/${id}`
-    );
-    console.log("data", response.data);
-    return response.data || {};
-  } catch (error) {
-		// Logga det tekniska felet för felsökning
-		console.error("API Error fetching candy:", error);
-
-		// Kasta felet vidare så att komponenten kan hantera det
-		throw new Error("Kunde inte hämta produkten från servern.");
-  }
+  const response = await get<ApiResponse<CandyWithDescription>>(`/products/${id}`);
+  console.log("data", response.data);
+  return response.data || ({} as CandyWithDescription);
 };
 
 export const placeOrder = async (userId: number, order: OrderRequest): Promise<OrderResponse | null> => {
-  try {
-    const response = await post<OrderRequest, OrderResponse>(`/users/${userId}/orders`, order);
-    return response || null;
-  } catch (error) {
-    		// Logga det tekniska felet för felsökning
-		console.error("API Error placing order:", error);
-
-		// Kasta felet vidare så att komponenten kan hantera det
-		throw new Error("Kunde inte lägga beställningen.");
-  }
+  const response = await post<OrderRequest, OrderResponse>(`/users/${userId}/orders`, order);
+  return response || null;
 };
