@@ -1,3 +1,4 @@
+import { ApiError, TooManyRequestsError } from '../services/ApiError';
 import type { CheckoutProps, OrderItem, OrderRequest } from "../types/Types";
 import Loader from '../components/Loader';
 import { placeOrder } from "../services/BortakvallApi"; 
@@ -68,10 +69,18 @@ const Checkout = ({ onBack, onCheckoutComplete }: CheckoutProps) => {
         setError("Något gick fel vid beställningen! Försök igen eller kontakta vår kundtjänst.");
       }
     } catch (err) {
-      console.log(err);
-      setError(
-        "Det uppstod ett tekniskt problem vid beställningen. Försök igen om några minuter eller kontakta kundtjänst."
-      );
+    console.error(err);
+      if (err instanceof TooManyRequestsError) {
+        setError("För många beställningar just nu. Försök igen om en stund.");
+      } 
+      else if (err instanceof ApiError) {
+        setError(err.message);
+      } 
+      else {
+        setError(
+          "Det uppstod ett tekniskt problem vid beställningen. Försök igen om några minuter eller kontakta kundtjänst."
+        );
+      }
     } finally {
       setLoading(false);
     }

@@ -18,7 +18,7 @@ export const handleApiError  = async <T>(
 
     // 2️⃣ Translate known HTTP errors
     if (status === 404) {
-      throw new ApiError("Resursen kunde inte hittas.", 404);
+      throw new ApiError("Not found.", 404);
     }
 
     if (status === 500) {
@@ -29,7 +29,7 @@ export const handleApiError  = async <T>(
       throw new TooManyRequestsError();
     }
 
-    throw new ApiError("Ett oväntat serverfel uppstod.", status);
+    throw new ApiError("Ett oväntat serverfel uppstod.", status); //server doesn't answer (timeout)
   }
 
   // Non-Axios error
