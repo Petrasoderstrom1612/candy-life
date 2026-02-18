@@ -1,4 +1,4 @@
-import type { Candy, CartItem } from "../services/Types";
+import type { Candy, CartItem } from "../types/Types";
 import { CartContext } from "./CartContext";
 import { useState, useEffect } from "react";
 

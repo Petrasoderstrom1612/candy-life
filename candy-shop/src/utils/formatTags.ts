@@ -1,4 +1,4 @@
-import type { Tag } from "../services/Types";
+import type { Tag } from "../types/Types";
 
 export function formatTags(tags?: Tag[]): string {
   if (!tags || tags.length === 0) return "";

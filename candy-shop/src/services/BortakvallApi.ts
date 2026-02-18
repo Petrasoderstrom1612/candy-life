@@ -1,5 +1,5 @@
 import axios from "axios";
-import type {ApiResponse, Candy, CandyWithDescription, OrderRequest, OrderResponse} from "./Types"
+import type {ApiResponse, Candy, CandyWithDescription, OrderRequest, OrderResponse} from "../types/Types"
 import { handleApiError } from "./handleApiError";
 
 console.log(import.meta.env.VITE_API_BASEURL)

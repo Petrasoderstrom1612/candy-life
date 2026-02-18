@@ -1,4 +1,4 @@
-import type { CheckoutProps, OrderItem, OrderRequest } from "../services/Types";
+import type { CheckoutProps, OrderItem, OrderRequest } from "../types/Types";
 import Loader from '../components/Loader';
 import { placeOrder } from "../services/BortakvallApi"; 
 import { useCart } from "../context/useCart";

@@ -1,5 +1,5 @@
 import { ApiError, TooManyRequestsError } from '../services/ApiError';
-import type { CandyLocation, CandyWithDescription} from "../services/Types";
+import type { CandyLocation, CandyWithDescription} from "../types/Types";
 import { formatHTML } from "../utils/formatHTML";
 import { formatTags } from "../utils/formatTags";
 import { getOneCandy } from '../services/BortakvallApi';

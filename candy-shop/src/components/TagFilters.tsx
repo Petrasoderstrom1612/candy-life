@@ -1,6 +1,6 @@
 import React from "react";
 import { useSearchParams } from "react-router-dom";
-import type {TagSlug, TagFiltersProps} from "../services/Types"
+import type {TagSlug, TagFiltersProps} from "../types/Types"
 
 
 const TagFilters: React.FC<TagFiltersProps> = ({ availableTags }) => {

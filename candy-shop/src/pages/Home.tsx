@@ -1,7 +1,7 @@
 import '../assets/app.scss';
 import { ApiError, TooManyRequestsError } from '../services/ApiError';
 import Button from 'react-bootstrap/Button';
-import type { Candy, TagSlug } from '../services/Types';
+import type { Candy, TagSlug } from '../types/Types';
 import { getCandies } from '../services/BortakvallApi';
 import { Link, useSearchParams } from "react-router-dom";
 import Loader from '../components/Loader';
