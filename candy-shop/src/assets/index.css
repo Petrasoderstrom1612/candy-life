@@ -308,10 +308,6 @@ h2 {
   text-align: center;
 }
 
-.icon-error{
-  color: #F87171;
-}
-
 .inactivenav{
   font-weight: bold !important;
   text-decoration: underline !important;
@@ -481,23 +477,19 @@ main {
 
 .toast-div{
   display: flex;
-  width: 896;
-  height: 80;
   opacity: 1;
   gap: 12px;
   border-radius: 6px;
   padding: 16px;
-  /* max-width: fit-content; */
-  width:260px;  
-  /* POSITION */
+  width: 289px;
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 11px;
+  right: 14px;
   z-index: 1000;
 }
 
 .toast-div-colors{
-    background-color: #FEF2F2;
+  background: #f5bebe;
   color: #92400E;
 }
 
@@ -507,8 +499,8 @@ main {
 
 .toast-ps-div{
   font-family: Inter;
-  font-weight: 400;
-  font-size: 14px;
+  font-weight: 500;
+  font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
 }

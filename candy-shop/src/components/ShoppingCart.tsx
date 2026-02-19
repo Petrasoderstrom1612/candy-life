@@ -48,15 +48,12 @@ const ShoppingCart = () => {
         {toast && (
               <div className="toast-div toast-div-colors">
                 <div className="toast-icon-div">
-                  <HiXCircle className="icon-error"/>
+                  {/* <HiXCircle className="icon-error"/> */}
                 </div> 
                 <div className="toast-ps-div">
-                    <p className="toast-p-title">{toast.type?.toLocaleUpperCase()}</p>
                     <p>{toast.message}</p>
                 </div>
               </div>
-
-          // <HiXCircle className="icon-error">{toast.message}</HiXCircle>
       )}
       <button
         onClick={handleCloseCart}

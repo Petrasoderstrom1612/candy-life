@@ -64,7 +64,6 @@ const CartProvider = ({ children }: CartProviderProps) => {
           );
         } else {
           console.log(`Cannot add "${candy.name}" — reached max stock of ${candy.stock_quantity}`)
-          // alert(`Det går tyvärr inte att lägga till fler av "${candy.name}" — max ${candy.stock_quantity} i lager`);
           setToast({
             message: `Det går tyvärr inte att lägga till fler av "${candy.name}" — max ${candy.stock_quantity} i lager`,
             type: "error",
