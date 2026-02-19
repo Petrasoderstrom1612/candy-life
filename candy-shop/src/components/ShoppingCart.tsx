@@ -1,5 +1,6 @@
 import Checkout from "./Checkout";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
+import { HiXCircle } from "react-icons/hi";
 import { useCart } from "../context/useCart";
 import { useEffect, useState } from "react";
 
@@ -11,6 +12,7 @@ const ShoppingCart = () => {
     if (typeof window === "undefined") return false; //default nothing in local storage
     return localStorage.getItem(CHECKOUT_STEP_KEY) === "true";
   });
+  const { toast } = useCart()
 
   useEffect(() => {
     console.log("Cart updated:", cart);
@@ -43,6 +45,19 @@ const ShoppingCart = () => {
 
   return !isCheckout && (
     <section className="cart-overlay">
+        {toast && (
+              <div className="toast-div toast-div-colors">
+                <div className="toast-icon-div">
+                  <HiXCircle className="icon-error"/>
+                </div> 
+                <div className="toast-ps-div">
+                    <p className="toast-p-title">{toast.type?.toLocaleUpperCase()}</p>
+                    <p>{toast.message}</p>
+                </div>
+              </div>
+
+          // <HiXCircle className="icon-error">{toast.message}</HiXCircle>
+      )}
       <button
         onClick={handleCloseCart}
         aria-label="Close shopping cart"

@@ -308,6 +308,10 @@ h2 {
   text-align: center;
 }
 
+.icon-error{
+  color: #F87171;
+}
+
 .inactivenav{
   font-weight: bold !important;
   text-decoration: underline !important;
@@ -473,6 +477,44 @@ main {
   display: flex;
   flex-wrap: wrap; 
   gap: 0.5em;
+}
+
+.toast-div{
+  display: flex;
+  width: 896;
+  height: 80;
+  opacity: 1;
+  gap: 12px;
+  border-radius: 6px;
+  padding: 16px;
+  /* max-width: fit-content; */
+  width:260px;  
+  /* POSITION */
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.toast-div-colors{
+    background-color: #FEF2F2;
+  color: #92400E;
+}
+
+.toast-icon-div{
+  margin-right:0.5em;
+}
+
+.toast-ps-div{
+  font-family: Inter;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0%;
+}
+
+.toast-p-title{
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {/* ipad */

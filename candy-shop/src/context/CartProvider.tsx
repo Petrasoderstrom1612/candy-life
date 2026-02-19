@@ -1,4 +1,4 @@
-import type { Candy, CartItem } from "../types/Types";
+import type { Candy, CartItem, Toast } from "../types/Types";
 import { CartContext } from "./CartContext";
 import { useState, useEffect } from "react";
 
@@ -16,26 +16,39 @@ const CartProvider = ({ children }: CartProviderProps) => {
       const parsed: CartItem[] = JSON.parse(jsonCart);
 
       return parsed.map(item => ({
-      candy: item.candy ?? {  //fallback
-      id: 0,
+        candy: item.candy ?? {  //fallback
+          id: 0,
       name: "Unknown Candy",
       price: 0,
       on_sale: false,
       images: [],
       stock_status: "outofstock",
       stock_quantity: 0,
-    },
-    quantity: item.quantity ?? 1
-  }));
+      },
+      quantity: item.quantity ?? 1
+      }));
     } catch (error) {
       console.error("Failed to parse cart from local storage", error);
       return [];
     }
   });
+
   const [isOpen, setIsOpen] = useState<boolean>(()=>{
     if (typeof window === "undefined") return false;
     return localStorage.getItem(CART_OPEN_KEY) === "true";
   });
+
+  const [toast, setToast] = useState<Toast | null>(null);
+
+  useEffect(() => {
+    if (!toast) return;
+
+    const timer = setTimeout(() => {
+      setToast(null);
+    }, 7000);
+
+    return () => clearTimeout(timer)
+  }, [toast])
 
   const addToCart = (candy: Candy) => {
     setCart(prev => {
@@ -51,7 +64,11 @@ const CartProvider = ({ children }: CartProviderProps) => {
           );
         } else {
           console.log(`Cannot add "${candy.name}" — reached max stock of ${candy.stock_quantity}`)
-          alert(`Det går tyvärr inte att lägga till fler av "${candy.name}" — max ${candy.stock_quantity} i lager`);
+          // alert(`Det går tyvärr inte att lägga till fler av "${candy.name}" — max ${candy.stock_quantity} i lager`);
+          setToast({
+            message: `Det går tyvärr inte att lägga till fler av "${candy.name}" — max ${candy.stock_quantity} i lager`,
+            type: "error",
+          })
           return prev;
         }
       }
@@ -84,7 +101,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }, [cart,isOpen]);
 
   return (
-    <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart, clearCart }}>
+    <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart, clearCart, toast}}>
       {children}
     </CartContext.Provider>
   );

@@ -50,6 +50,7 @@ export type CartContextType = {
   onCheckoutComplete?: () => void;
   removeFromCart: (candyId: number) => void;
   toggleCart: () => void;
+  toast: Toast | null;
 };
 
 
@@ -103,3 +104,8 @@ export type TagSlug = "gelatinfri" | "palmoljefri" | "vegansk" | "nyhet";
 export interface TagFiltersProps {
   availableTags: TagSlug[]; 
 }
+
+export type Toast = {
+  message: string;
+  type?: "error" | "success";
+};
