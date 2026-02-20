@@ -475,12 +475,16 @@ main {
   gap: 0.5em;
 }
 
+.toast-btn{
+  all: unset;
+}
+
 .toast-div{
   display: flex;
   opacity: 1;
   gap: 12px;
   border-radius: 6px;
-  padding: 16px;
+  padding: 10px;
   width: 289px;
   position: fixed;
   top: 11px;
@@ -494,7 +498,7 @@ main {
 }
 
 .toast-icon-div{
-  margin-right:0.5em;
+  margin-top: -8px;
 }
 
 .toast-ps-div{
@@ -503,6 +507,11 @@ main {
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0%;
+  padding: 5px;
+}
+
+.toast-p{
+  margin: 0;
 }
 
 .toast-p-title{

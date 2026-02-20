@@ -47,12 +47,12 @@ const ShoppingCart = () => {
     <section className="cart-overlay">
         {toast && (
               <div className="toast-div toast-div-colors">
-                <div className="toast-icon-div">
-                  {/* <HiXCircle className="icon-error"/> */}
-                </div> 
                 <div className="toast-ps-div">
-                    <p>{toast.message}</p>
+                  <p className="toast-p">{toast.message}</p>
                 </div>
+                <div className="toast-icon-div">
+                  <button className="toast-btn"><HiXCircle className="icon-error"/></button>
+                </div> 
               </div>
       )}
       <button
