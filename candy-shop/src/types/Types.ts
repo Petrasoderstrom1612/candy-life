@@ -51,6 +51,7 @@ export type CartContextType = {
   removeFromCart: (candyId: number) => void;
   toggleCart: () => void;
   toast: Toast | null;
+  closeToast: () => void;
 };
 
 

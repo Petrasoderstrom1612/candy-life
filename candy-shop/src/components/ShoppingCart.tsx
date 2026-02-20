@@ -7,12 +7,11 @@ import { useEffect, useState } from "react";
 const CHECKOUT_STEP_KEY = "shopping-cart-checkout";
 
 const ShoppingCart = () => {
-  const { cart, isOpen, toggleCart, addToCart, removeFromCart, clearCart } = useCart();
+  const { cart, isOpen, toggleCart, addToCart, removeFromCart, clearCart, toast, closeToast } = useCart();
   const [isCheckout, setIsCheckout] = useState(() => {
     if (typeof window === "undefined") return false; //default nothing in local storage
     return localStorage.getItem(CHECKOUT_STEP_KEY) === "true";
   });
-  const { toast } = useCart()
 
   useEffect(() => {
     console.log("Cart updated:", cart);
@@ -46,14 +45,14 @@ const ShoppingCart = () => {
   return !isCheckout && (
     <section className="cart-overlay">
         {toast && (
-              <div className="toast-div toast-div-colors">
-                <div className="toast-ps-div">
-                  <p className="toast-p">{toast.message}</p>
-                </div>
-                <div className="toast-icon-div">
-                  <button className="toast-btn"><HiXCircle className="icon-error"/></button>
-                </div> 
-              </div>
+          <div className="toast-div toast-div-colors">
+            <div className="toast-ps-div">
+              <p className="toast-p">{toast.message}</p>
+            </div>
+            <div className="toast-icon-div">
+              <button className="toast-btn" onClick={closeToast}><HiXCircle className="icon-error"/></button>
+            </div> 
+          </div>
       )}
       <button
         onClick={handleCloseCart}

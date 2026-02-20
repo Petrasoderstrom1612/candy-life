@@ -40,15 +40,19 @@ const CartProvider = ({ children }: CartProviderProps) => {
 
   const [toast, setToast] = useState<Toast | null>(null);
 
-  // useEffect(() => {
-  //   if (!toast) return;
+  useEffect(() => {
+    if (!toast) return;
 
-  //   const timer = setTimeout(() => {
-  //     setToast(null);
-  //   }, 6000);
+    const timer = setTimeout(() => {
+      setToast(null);
+    }, 5000);
 
-  //   return () => clearTimeout(timer)
-  // }, [toast])
+    return () => clearTimeout(timer)
+  }, [toast])
+
+  const closeToast = () => {
+    setToast(null);
+  }
 
   const addToCart = (candy: Candy) => {
     setCart(prev => {
@@ -100,7 +104,7 @@ const CartProvider = ({ children }: CartProviderProps) => {
   }, [cart,isOpen]);
 
   return (
-    <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart, clearCart, toast}}>
+    <CartContext.Provider value={{ cart, isOpen, addToCart, removeFromCart, toggleCart, clearCart, toast, closeToast}}>
       {children}
     </CartContext.Provider>
   );
